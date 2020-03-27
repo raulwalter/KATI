@@ -1,5 +1,7 @@
 # KATI (Koroona Abi- ja Teabe Infosüsteem)
 
+*Prototüüp on leitav aadressilt: https://kati.raulwalter.com*
+
 KATI on enesediagnostikal ning andmekorjel põhinev infosüsteem mis annab vajalikku informatsiooni kriisile adekvaatseks, teadmispõhiseks reageerimiseks ning poliitikaotsuste kujundamiseks ja nende operatiivseks kommunikeerimiseks kriisiolukorras.
 
 KATI on kasutatav ka peale COVID-19 kriisi ja järgmises sarnases olukorras. Kasutatav kui Kodaniku Abi- ja Teabe Infosüsteem.
@@ -70,7 +72,7 @@ Eesti-sisesed veebilahendused (näiteks koroonatest.ee, koroonakaart.ee) on mada
 ## Hind
 Lahenduse pakkumisel ei ole RaulWalteril ega lahenduse loomise osalistel majandushuvi ehk lahendus on Eesti Vabariigile ja kõigile kasutajatele tasuta.
 
-## About mockup
+# About mockup
 
 * Added first basic templates
 * Created initial routes
