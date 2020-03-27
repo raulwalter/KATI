@@ -21,7 +21,7 @@ Kriisi kontekstis näeme KATI lahendust peaasjalikult ühe infosühiskonna kriis
 KATI tuvastab kasutaja läbi eID (ID-kaart, Digi-ID, Mobiil-ID, Smart-ID, e-residendi kaart) tagamaks andmete isikustatuse ja seeläbi usaldusväärsuse. Süsteem võimaldab pidada niiöelda päevikut ka kolmanda isiku kohta (pereliige). Isiku identifikaatoriks süsteemis on isikukood. Iga kasutajal, olenemata terviseseisundist, on võimalus täita veebipõhine ankeet enda ja vajadusel oma lähikondlaste terviseseisundi kohta (sh võimalike haigussümptomite tekkimise aeg ja kirjeldus).
 
 Isikutuvastus | Päevik | Andmetöötlus | Tagasiside
------------- | ------------- | ------------- | ------------- 
+------------- | ------------- | ------------- | ------------- 
 Isikutuvastus aitab tõsta enesediagnostikal põhinevate andmete usaldusväärsust | Kasutajal palutakse täita valikvastustega ankeet, mis võimaldab esmast, statistilistel andmetel põhinevat tervisliku seisundi analüüsi. | Andmete kogumi põhjal saab analüüsida viiruse tõenäolist levikut erinevate mudelite põhjal. Infokihti saab näha ka Eesti kaardil. | Vastustele tuginedes antakse kasutajale tagasisidet tema tervisliku seinsudi kohta ning soovitused edasiseks käitumiseks.
 
 ## Täpsemalt
