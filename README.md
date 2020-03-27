@@ -4,7 +4,7 @@ KATI on enesediagnostikal ning andmekorjel põhinev infosüsteem mis annab vajal
 
 KATI on kasutatav ka peale COVID-19 kriisi ja järgmises sarnases olukorras. Kasutatav kui Kodaniku Abi- ja Teabe Infosüsteem.
 
-Kriisi kontekstis näeme KATI lahendust peaasjalikult ühe infosühiskonna kriisikommunikatsiooni meetmena, mistõttu sobitub see riigiportaali eesti.ee. KATI lõppkasutaja- (elaniku-) poolne liides koosneb virtuaalsest enesetestist, mis suunab kasutaja läbima valikvastustest koosneva küsimustiku, kogumaks eelkõige järgmist informatsiooni:
+Kriisi kontekstis näeme KATI lahendust peaasjalikult ühe infosühiskonna kriisikommunikatsiooni meetmena, mistõttu sobitub see kõige paremini riigiportaali eesti.ee. KATI lõppkasutaja- (elaniku-) poolne liides koosneb virtuaalsest enesetestist, mis suunab kasutaja läbima valikvastustest koosneva küsimustiku, kogumaks eelkõige:
 
 - Elanikkonna tervisliku seisukorra ülevaade viiruse leviku seisukohast
 - Geograafiline paiknemine (tegelik elukoht ning külastatud paigad)
@@ -13,25 +13,16 @@ Kriisi kontekstis näeme KATI lahendust peaasjalikult ühe infosühiskonna kriis
 ## Olulised põhimõtted
 1. Kasutaja on autentitud	- Teenuse kasutamiseks peab olema kasutaja autentinud.
 2. Kasutaja annab nõusoleku	- Kasutaja allkirjastab digitaalselt nõusoleku oma andmete töötlemiseks tagamaks nõnda maksimaalse vastavuse andmekaitse nõuetele.
-3. Andmed on kaitstud	- Kogutud isikuandmed krüpteeritakse kasutaja autentimissertifikaadi avalikule võtmele /täpne tehniline lahendus vajab uurimist/. Isikustamata andmeid ei krüpteerita.
-4. Andmed on avatud -	Isikustamata andmed on võimalik teha kättesaadavaks Terviseametile. Mingis ulatuses kõikidele autentimata kasutajale läbi nn Dashboardi.
+3. Andmed on kaitstud	- Kogutud isikuandmed krüpteeritakse kasutaja autentimissertifikaadi avalikule võtmele (*täpne tehniline lahendus vajab uurimist*). Isikustamata andmeid ei krüpteerita.
+4. Andmed on avatud -	Isikustamata andmed on võimalik teha kättesaadavaks Terviseametile. Mingis ulatuses ka autentimata kasutajale läbi Dashboardi.
 5. Andmed kuuluvad süsteemi kasutajale -	Arendajatel/süsteemi loojatel/analüütikutel/majutajal - kellelgi ei ole ligipääsu isikustatud andmetele. Andmed kuuluvad süsteemi kasutajale. Kasutajal on võimalik igal ajal oma andmed süsteemist pöördumatult kustutada.
 
 ## Kuidas KATI toimib?
-KATI tuvastab kasutaja läbi eID (ID-kaart, Mobiil-ID, Smart-ID) tagamaks andmete isikustatuse ja seeläbi usaldusväärsuse. Süsteem võimaldab pidada niiöelda päevikut ka kolmanda isiku kohta (pereliige). Isiku identifikaatoriks süsteemis on isikukood. Iga kasutajal, olenemata terviseseisundist, on võimalus täita veebipõhine ankeet enda ja vajadusel oma lähikondlaste terviseseisundi kohta (sh võimalike haigussümptomite tekkimise aeg ja kirjeldus).
+KATI tuvastab kasutaja läbi eID (ID-kaart, Digi-ID, Mobiil-ID, Smart-ID, e-residendi kaart) tagamaks andmete isikustatuse ja seeläbi usaldusväärsuse. Süsteem võimaldab pidada niiöelda päevikut ka kolmanda isiku kohta (pereliige). Isiku identifikaatoriks süsteemis on isikukood. Iga kasutajal, olenemata terviseseisundist, on võimalus täita veebipõhine ankeet enda ja vajadusel oma lähikondlaste terviseseisundi kohta (sh võimalike haigussümptomite tekkimise aeg ja kirjeldus).
 
-### Isikutuvastus
-ID-kaart, Mobiil-ID või Smart-ID. 
-Isikutuvastus aitab tõsta enesediagnostikal põhinevate andmete usaldusväärsust
-
-### E-ankeet
-Kasutajal palutakse täita valikvastustega ankeet, mis võimaldab esmast, statistilistel andmetel põhinevat tervisliku seisundi analüüsi.
-
-### Andmetöötlus
-Andmete kogumi põhjal saab analüüsida viiruse tõenäolist levikut erinevate mudelite põhjal. Infokihti saab näha ka Eesti kaardil.
-
-### Tagasiside
-Vastustele tuginedes antakse kasutajale tagasisidet tema tervisliku seinsudi kohta ning soovitused edasiseks käitumiseks.
+Isikutuvastus | Päevik | Andmetöötlus | Tagasiside
+------------ | ------------- | ------------- | ------------- 
+Isikutuvastus aitab tõsta enesediagnostikal põhinevate andmete usaldusväärsust | Kasutajal palutakse täita valikvastustega ankeet, mis võimaldab esmast, statistilistel andmetel põhinevat tervisliku seisundi analüüsi. | Andmete kogumi põhjal saab analüüsida viiruse tõenäolist levikut erinevate mudelite põhjal. Infokihti saab näha ka Eesti kaardil. | Vastustele tuginedes antakse kasutajale tagasisidet tema tervisliku seinsudi kohta ning soovitused edasiseks käitumiseks.
 
 ## Täpsemalt
 ### Pere ja lähedaste info sisestus
@@ -65,7 +56,7 @@ Andmete isikustatus ning suhtlusvõrgustike ja geograafiliste asukohtade kaardis
 Näiteks loob keskkonnast saadav teave eeldused otsuste kujundamiseks sotsiaalsete-, majanduslike- ja liikumispiirangute karmistamisel või leevendamisel regionaalselt vastavalt ohu tasemele. Teiseks võimaldab andmestik parendada isikukaitsevahendite kättesaadavuse vajaduse hindamist regionaalsest vaatest. Isikustatud andmete toel saaks muu hulgas määrata kohalike omavalitsuste lõikes isikuid, kes vajaks liikumispiirangutest ja/või tervislikust seisundist tulenevalt tuge näiteks esmatasandi kaupade (toit, ravimid) kojutoimetamisel.
 
 ## Kommunikatsioon
-Kriisi kontekstis on KATI lahendus peaasjalikult üks Eesti infoühiskonna kriisikommunikatsiooni meede, mistõttu soovitame kommunikeerida KATI kasutamist üleriikliku, strateegiliselt tähtsa initsiatiivina ning suunata elanikkonda aktiivselt lisaks massiteabekanalitele riiklike kanalite kaudu (muuhulgas läbi ametliku e-posti aadressi eesti.ee) virtuaaltestis osalema.
+Kriisi kontekstis on KATI lahendus peaasjalikult üks Eesti infoühiskonna kriisikommunikatsiooni meede, mistõttu võiks kommunikeerida KATI kasutamist üleriikliku, strateegiliselt tähtsa initsiatiivina ning suunata elanikkonda aktiivselt lisaks massiteabekanalitele riiklike kanalite kaudu (muuhulgas läbi ametliku e-posti aadressi eesti.ee) virtuaaltestis osalema.
 
 ## Olemasolevad lahendused
 Eesti-sisesed veebilahendused (näiteks koroonatest.ee, koroonakaart.ee) on madala andmekvaliteediga (isikustamata, vähese detailsusega, madala kasuteguriga ohupildist ülevaate saamisel ja andmete alusel otsuste kujundamiseks) või põhinevad olemasolevatel andmetel ning ei loo uut andmenähtavust.
