@@ -63,5 +63,7 @@ Eesti-sisesed veebilahendused (näiteks koroonatest.ee, koroonakaart.ee) on mada
 
 Parema andmedetailsusega on Ameerika Ühendriikide Terviseameti (CDC, https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/testing.html) analoogne lahendus, millest teiste hulgas eeskuju võtta. Plaanitav lahendus on viidatust parem, kuna tugineb isikustatud andmetele, võimaldab staatuse uuendamist/päeviku pidamist tervisenäitajate muutumisel ning sisaldab ka võimaliku nakatunu kontaktvõrgustiku, asukoha ja sagedamini külastatud geograafiliste asukohtade infot.
 
+COVID-19 Heat Map - https://www.evergreen-life.co.uk/covid-19-heat-map?utm_source=All+Users&utm_campaign=c75bcc3832-EMAIL_CAMPAIGN_2020_03_09_09_49_COPY_01&utm_medium=email&utm_term=0_7c90581c5e-c75bcc3832-78132821
+
 ## Hind
 Lahenduse pakkumisel ei ole RaulWalteril ega lahenduse loomise osalistel majandushuvi ehk lahendus on Eesti Vabariigile ja kõigile kasutajatele tasuta.
