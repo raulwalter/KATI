@@ -1,6 +1,6 @@
-# KATI (Koroona Abi- ja Teabe Infosüsteem)
+# [KATI (Koroona Abi- ja Teabe Infosüsteem)](https://kati.raulwalter.com)
 
-*Prototüüp on leitav aadressilt: https://kati.raulwalter.com*
+*Prototüüp on püsti: https://kati.raulwalter.com*
 
 KATI on enesediagnostikal ning andmekorjel põhinev infosüsteem mis annab vajalikku informatsiooni kriisile adekvaatseks, teadmispõhiseks reageerimiseks ning poliitikaotsuste kujundamiseks ja nende operatiivseks kommunikeerimiseks kriisiolukorras.
 
