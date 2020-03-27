@@ -2,11 +2,11 @@
 
 *Prototüüp on püsti: https://kati.raulwalter.com*
 
-KATI on enesediagnostikal ning andmekorjel põhinev infosüsteem mis annab vajalikku informatsiooni kriisile adekvaatseks, teadmispõhiseks reageerimiseks ning poliitikaotsuste kujundamiseks ja nende operatiivseks kommunikeerimiseks kriisiolukorras.
+KATI on enesediagnostikal ning andmekorjel põhinev infosüsteem mis annab vajalikku informatsiooni kriisile adekvaatseks, teadmispõhiseks reageerimiseks ning käitumisotsuste kujundamiseks ja nende operatiivseks kommunikeerimiseks kriisiolukorras.
 
 KATI on kasutatav ka peale COVID-19 kriisi ja järgmises sarnases olukorras. Kasutatav kui Kodaniku Abi- ja Teabe Infosüsteem.
 
-Kriisi kontekstis näeme KATI lahendust peaasjalikult ühe infosühiskonna kriisikommunikatsiooni meetmena, mistõttu sobitub see kõige paremini riigiportaali eesti.ee. KATI lõppkasutaja- (elaniku-) poolne liides koosneb virtuaalsest enesetestist, mis suunab kasutaja läbima valikvastustest koosneva küsimustiku, kogumaks eelkõige:
+KATI lõppkasutaja- (elaniku-) poolne liides koosneb virtuaalsest enesetestist, mis suunab kasutaja läbima valikvastustest koosneva küsimustiku, kogumaks eelkõige:
 
 - Elanikkonna tervisliku seisukorra ülevaade viiruse leviku seisukohast
 - Geograafiline paiknemine (tegelik elukoht ning külastatud paigad)
