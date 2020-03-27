@@ -6,9 +6,10 @@ KATI on enesediagnostikal ning andmekorjel põhinev infosüsteem mis annab vajal
 
 KATI on kasutatav ka peale COVID-19 kriisi ja järgmises sarnases olukorras. Kasutatav kui Kodaniku Abi- ja Teabe Infosüsteem.
 
-KATI lõppkasutaja- (elaniku-) poolne liides koosneb virtuaalsest enesetestist, mis suunab kasutaja läbima valikvastustest koosneva küsimustiku, kogumaks eelkõige:
+KATI lõppkasutaja- (elaniku-) poolne liides koosneb virtuaalsest enesetestist, mis suunab kasutaja läbima valikvastustest koosneva küsimustiku, et saavutada eelkõige:
 
 - Elanikkonna tervisliku seisukorra ülevaade viiruse leviku seisukohast
+- Ülevaade diagnoositud ja diagnoosimata haigusjuhtumitest
 - Geograafiline paiknemine (tegelik elukoht ning külastatud paigad)
 - Kasutaja lähem kontakt-ringkond läbi kontaktvõrgustiku kaardistamise
 
