@@ -20,9 +20,9 @@ Kriisi kontekstis näeme KATI lahendust peaasjalikult ühe infosühiskonna kriis
 ## Kuidas KATI toimib?
 KATI tuvastab kasutaja läbi eID (ID-kaart, Digi-ID, Mobiil-ID, Smart-ID, e-residendi kaart) tagamaks andmete isikustatuse ja seeläbi usaldusväärsuse. Süsteem võimaldab pidada niiöelda päevikut ka kolmanda isiku kohta (pereliige). Isiku identifikaatoriks süsteemis on isikukood. Iga kasutajal, olenemata terviseseisundist, on võimalus täita veebipõhine ankeet enda ja vajadusel oma lähikondlaste terviseseisundi kohta (sh võimalike haigussümptomite tekkimise aeg ja kirjeldus).
 
-Isikutuvastus | Päevik | Andmetöötlus | Tagasiside
+ Isikutuvastus | Päevik | Andmetöötlus | Tagasiside
 ------------- | ------------- | ------------- | ------------- 
-Isikutuvastus aitab tõsta enesediagnostikal põhinevate andmete usaldusväärsust | Kasutajal palutakse täita valikvastustega ankeet, mis võimaldab esmast, statistilistel andmetel põhinevat tervisliku seisundi analüüsi. | Andmete kogumi põhjal saab analüüsida viiruse tõenäolist levikut erinevate mudelite põhjal. Infokihti saab näha ka Eesti kaardil. | Vastustele tuginedes antakse kasutajale tagasisidet tema tervisliku seinsudi kohta ning soovitused edasiseks käitumiseks.
+Isikutuvastus aitab tõsta enesediagnostikal põhinevate andmete usaldusväärsust. | Kasutajal palutakse täita valikvastustega ankeet, mis võimaldab esmast, statistilistel andmetel põhinevat tervisliku seisundi analüüsi. | Andmete kogumi põhjal saab analüüsida viiruse tõenäolist levikut erinevate mudelite põhjal. Infokihti saab näha ka Eesti kaardil. | Vastustele tuginedes antakse kasutajale tagasisidet tema tervisliku seinsudi kohta ning soovitused edasiseks käitumiseks.
 
 ## Täpsemalt
 ### Pere ja lähedaste info sisestus
@@ -31,10 +31,10 @@ Lisaks tervisliku seisundi andmetele on kasutajal võimalus ka soovi korral süs
 ### KATI piirangud
 Enesediagnostikal on arvestatav veamäär, kuid kuna ei ole näha, et see ajas muutuks, on tulemuseks täpsed võrdlusandmed aegribal. Teiseks saab veamäära osas kohaldada hüpoteese ning vastavalt luua erinevaid stsenaariume (konservatiivne, optimistlik).
 
-Kui kasutaja ei ole andmeid näiteks 1 nädala jooksul uuendanud, saab ta e-kirja teel eesti.ee meiliaadressile perioodilisi meeldetuletusi tervisliku seisundi ülevaatamiseks KATI keskkonnas.
+Kui kasutaja ei ole andmeid näiteks 1 nädala jooksul uuendanud, saab ta e-kirja teel perioodilisi meeldetuletusi tervisliku seisundi ülevaatamiseks KATI keskkonnas.
 
 ### Tagasiside
-Kõigile on võimaldatud ligipääs pseudonümiseeritud andmetele, kus geoinformatsioon on saadaval haldusüksuse täpsusega (linn, vald, maakond). Täiendavalt on tulevikus mõeldav liidestus väliste süsteemidega võimaldamaks ligipäästu volitatud isikutele. Volitatud arstid ja avaliku sektori organisatsioonid (nt Terviseamet, haiglad, Häirekeskus, Päästeamet) saavad õigustatud vajaduse korral piiramatu ligipääsu isikustatud andmetele koos täpse geoinfoga.
+Kõigile on võimaldatud ligipääs pseudonümiseeritud andmetele, kus geoinformatsioon on saadaval haldusüksuse täpsusega (linn, vald, maakond). Täiendavalt on mõeldav liidestus väliste süsteemidega võimaldamaks ligipäästu volitatud isikutele. Volitatud arstid ja avaliku sektori organisatsioonid (nt Terviseamet, haiglad, Häirekeskus, Päästeamet) saavad õigustatud vajaduse korral piiramatu ligipääsu isikustatud andmetele koos täpse geoinfoga.
 
 KATI sisaldab muuhulgas adekvaatset informatsiooni ja ajakohaseid käitumisjuhiseid viiruse leviku tõkestamiseks. Arvestades Eestis viibivate/resideeruvate välismaalastega, on soovitatav tööriista kogutavat ja selle kaudu esitatavat teavet hoida ja anda paralleelselt nii eesti kui inglise keeles.
 
