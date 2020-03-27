@@ -19,7 +19,7 @@ KATI lõppkasutaja- (elaniku-) poolne liides koosneb virtuaalsest enesetestist, 
 3. Andmed on kaitstud	- Kogutud isikuandmed krüpteeritakse kasutaja autentimissertifikaadi avalikule võtmele (*täpne tehniline lahendus vajab uurimist*). Isikustamata andmeid ei krüpteerita.
 4. Andmed on avatud -	Isikustamata andmed on võimalik teha kättesaadavaks Terviseametile. Mingis ulatuses ka autentimata kasutajale läbi Dashboardi.
 5. Andmed kuuluvad süsteemi kasutajale -	Arendajatel/süsteemi loojatel/analüütikutel/majutajal - kellelgi ei ole ligipääsu isikustatud andmetele. Andmed kuuluvad süsteemi kasutajale. Kasutajal on võimalik igal ajal oma andmed süsteemist pöördumatult kustutada.
-6. Süsteemi kasutamine on rangelt vabatahtlik.
+6. Süsteemi kasutamine on vabatahtlik.
 
 ## Kuidas KATI toimib?
 KATI tuvastab kasutaja läbi eID (ID-kaart, Digi-ID, Mobiil-ID, Smart-ID, e-residendi kaart) tagamaks andmete isikustatuse ja seeläbi usaldusväärsuse. Süsteem võimaldab pidada niiöelda päevikut ka kolmanda isiku kohta (pereliige). Isiku identifikaatoriks süsteemis on isikukood. Iga kasutajal, olenemata terviseseisundist, on võimalus täita veebipõhine ankeet enda ja vajadusel oma lähikondlaste terviseseisundi kohta (sh võimalike haigussümptomite tekkimise aeg ja kirjeldus).
