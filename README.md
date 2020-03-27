@@ -24,7 +24,7 @@ KATI tuvastab kasutaja läbi eID (ID-kaart, Digi-ID, Mobiil-ID, Smart-ID, e-resi
 
  Isikutuvastus | Päevik | Andmetöötlus | Tagasiside
 ------------- | ------------- | ------------- | ------------- 
-Isikutuvastus aitab tõsta enesediagnostikal põhinevate andmete usaldusväärsust. | Kasutajal palutakse täita valikvastustega ankeet, mis võimaldab esmast, statistilistel andmetel põhinevat tervisliku seisundi analüüsi. | Andmete kogumi põhjal saab analüüsida viiruse tõenäolist levikut erinevate mudelite põhjal. Infokihti saab näha ka Eesti kaardil. | Vastustele tuginedes antakse kasutajale tagasisidet tema tervisliku seinsudi kohta ning soovitused edasiseks käitumiseks.
+Isikutuvastus aitab tõsta enesediagnostikal põhinevate andmete usaldusväärsust. | Kasutajal palutakse täita valikvastustega ankeet, mis võimaldab esmast, statistilistel andmetel põhinevat tervisliku seisundi analüüsi. | Andmete kogumi põhjal saab analüüsida viiruse tõenäolist levikut erinevate mudelite põhjal. Infokihti saab näha ka Eesti kaardil. | Vastustele tuginedes antakse kasutajale tagasisidet tema tervisliku seisundi kohta ning soovitused edasiseks käitumiseks.
 
 ## Täpsemalt
 ### Pere ja lähedaste info sisestus
@@ -45,7 +45,7 @@ Keskkonna loomisel tuleb teha koostööd Terviseametiga kasutades nende juhiseid
 
 ## KATI olulisus ja mõju COVID-19 vastases võitluses
 
-KATI toetab Vabariigi Valitsust selle eesmärkide saavutamisel:
+KATI toetab muuhulgas Vabariigi Valitsust selle eesmärkide saavutamisel:
 
 - Tõkestada COVID-19 kohapealset levikut Eestis
 - Tagada tervishoiusüsteemi suutlikkus COVID-19 tõrjeks ja raviks
@@ -57,10 +57,7 @@ Andmete isikustatus ning suhtlusvõrgustike ja geograafiliste asukohtade kaardis
 
 Näiteks loob keskkonnast saadav teave eeldused otsuste kujundamiseks sotsiaalsete-, majanduslike- ja liikumispiirangute karmistamisel või leevendamisel regionaalselt vastavalt ohu tasemele. Teiseks võimaldab andmestik parendada isikukaitsevahendite kättesaadavuse vajaduse hindamist regionaalsest vaatest. Isikustatud andmete toel saaks muu hulgas määrata kohalike omavalitsuste lõikes isikuid, kes vajaks liikumispiirangutest ja/või tervislikust seisundist tulenevalt tuge näiteks esmatasandi kaupade (toit, ravimid) kojutoimetamisel.
 
-## Kommunikatsioon
-Kriisi kontekstis on KATI lahendus peaasjalikult üks Eesti infoühiskonna kriisikommunikatsiooni meede, mistõttu võiks kommunikeerida KATI kasutamist üleriikliku, strateegiliselt tähtsa initsiatiivina ning suunata elanikkonda aktiivselt lisaks massiteabekanalitele riiklike kanalite kaudu (muuhulgas läbi ametliku e-posti aadressi eesti.ee) virtuaaltestis osalema.
-
-## Olemasolevad lahendused
+## Olemasolevad sarnased lahendused
 Eesti-sisesed veebilahendused (näiteks koroonatest.ee, koroonakaart.ee) on madala andmekvaliteediga (isikustamata, vähese detailsusega, madala kasuteguriga ohupildist ülevaate saamisel ja andmete alusel otsuste kujundamiseks) või põhinevad olemasolevatel andmetel ning ei loo uut andmenähtavust.
 
 - Parema andmedetailsusega on Ameerika Ühendriikide Terviseameti (CDC, https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/testing.html) analoogne lahendus, millest teiste hulgas eeskuju võtta. Plaanitav lahendus on viidatust parem, kuna tugineb isikustatud andmetele, võimaldab staatuse uuendamist/päeviku pidamist tervisenäitajate muutumisel ning sisaldab ka võimaliku nakatunu kontaktvõrgustiku, asukoha ja sagedamini külastatud geograafiliste asukohtade infot.
