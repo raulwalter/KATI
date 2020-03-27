@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -17,9 +18,51 @@ import (
 
 var currentQuestionID int
 var questions []DiagQuestion
-var page PageData
 
-var store = sessions.NewCookieStore([]byte(securecookie.GenerateRandomKey(32)))
+// User holds a users account information
+type User struct {
+	Username      string
+	Authenticated bool
+}
+
+// Store will hold all session data
+var store *sessions.CookieStore
+
+func init() {
+	authKeyOne := securecookie.GenerateRandomKey(64)
+	encryptionKeyOne := securecookie.GenerateRandomKey(32)
+
+	store = sessions.NewCookieStore(
+		authKeyOne,
+		encryptionKeyOne,
+	)
+
+	store.Options = &sessions.Options{
+		MaxAge:   60 * 15,
+		HttpOnly: true,
+	}
+
+	gob.Register(User{})
+}
+
+func getUser(s *sessions.Session) User {
+	val := s.Values["user"]
+	var user = User{}
+	user, ok := val.(User)
+	if !ok {
+		return User{Authenticated: false}
+	}
+	return user
+}
+
+func isAuthenticated(r *http.Request) bool {
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+	if auth := user.Authenticated; !auth {
+		return false
+	}
+	return true
+}
 
 // PageData ...
 type PageData struct {
@@ -212,14 +255,16 @@ func proccessAnswer(w http.ResponseWriter, r *http.Request) {
 func getDefault(w http.ResponseWriter, r *http.Request) {
 
 	// Show dashboard in case user is authenticated
-	if page.IsAuthenticated {
+	if isAuthenticated(r) {
 		dashboard(w, r)
 		return
 	}
 
 	w.Header().Set("Content-Type", "text/html")
 
+	page := &PageData{}
 	page.Title = "Sisene"
+	page.IsAuthenticated = isAuthenticated(r)
 
 	t, _ := template.ParseFiles("templates/index.html", "templates/login.html")
 	t.ExecuteTemplate(w, "layout", page)
@@ -229,11 +274,11 @@ func getDefault(w http.ResponseWriter, r *http.Request) {
 // Logout
 func logout(w http.ResponseWriter, r *http.Request) {
 
-	page.IsAuthenticated = false
-
 	session, _ := store.Get(r, "kati-session")
-	session.Values["user"] = ""
-	session.Values["authenticated"] = false
+
+	session.Values["user"] = User{}
+	session.Options.MaxAge = -1
+
 	session.Save(r, w)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 
@@ -242,7 +287,11 @@ func logout(w http.ResponseWriter, r *http.Request) {
 // Diary
 func diary(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Päevik"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/diary.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -250,7 +299,11 @@ func diary(w http.ResponseWriter, r *http.Request) {
 // Contact
 func contact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Kontaktid"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/contact.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -258,7 +311,11 @@ func contact(w http.ResponseWriter, r *http.Request) {
 // Support
 func support(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Tugi"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/support.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -266,7 +323,11 @@ func support(w http.ResponseWriter, r *http.Request) {
 // Maps
 func maps(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Kaardirakendus"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/maps.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -274,7 +335,11 @@ func maps(w http.ResponseWriter, r *http.Request) {
 // Api
 func api(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Kati API"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/api.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -282,7 +347,11 @@ func api(w http.ResponseWriter, r *http.Request) {
 // Privacy
 func privacy(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Privaatsustingimused"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/privacy.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -290,7 +359,11 @@ func privacy(w http.ResponseWriter, r *http.Request) {
 // Faq
 func faq(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Korduvad küsimused"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/faq.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -298,7 +371,11 @@ func faq(w http.ResponseWriter, r *http.Request) {
 // Dashboard
 func dashboard(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
 	page.Title = "Dashboard"
+	page.IsAuthenticated = isAuthenticated(r)
+
 	t, _ := template.ParseFiles("templates/index.html", "templates/dashboard.html")
 	t.ExecuteTemplate(w, "layout", page)
 }
@@ -342,9 +419,9 @@ func dataFeed(w http.ResponseWriter, r *http.Request) {
 		m[i] = v / 1000000
 	}
 
-	var feed FeedPage
+	feed := &FeedPage{}
 	feed.Title = "Andmestik"
-	feed.IsAuthenticated = page.IsAuthenticated
+	feed.IsAuthenticated = isAuthenticated(r)
 	feed.Country = cov
 	feed.World = m
 
@@ -358,9 +435,15 @@ func questionnaire(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 
-	page.Title = "Küsimustik"
-
 	params := mux.Vars(r)
+	currentQuestionID, err = strconv.Atoi(params["id"])
+	if err != nil {
+		currentQuestionID = 0
+	}
+
+	page := &PageData{}
+	page.Title = "Küsimustik"
+	page.IsAuthenticated = isAuthenticated(r)
 	currentQuestionID, err = strconv.Atoi(params["id"])
 	if err != nil {
 		currentQuestionID = 0
@@ -379,8 +462,10 @@ func lastPage(w http.ResponseWriter, r *http.Request) {
 
 	// TODO: Store result to database
 
+	page := &PageData{}
 	page.Title = "Test tehtud"
 	page.DiagnoseHTML = template.HTML(analyseResult())
+	page.IsAuthenticated = isAuthenticated(r)
 
 	questions = getQuestions()
 
@@ -397,8 +482,12 @@ func loginPost(w http.ResponseWriter, r *http.Request) {
 
 	session, _ := store.Get(r, "kati-session")
 
-	session.Values["user"] = "37701130004"
-	session.Values["authenticated"] = true
+	user := &User{
+		Username:      "37701130004",
+		Authenticated: true,
+	}
+
+	session.Values["user"] = user
 
 	err := session.Save(r, w)
 	if err != nil {
@@ -406,7 +495,6 @@ func loginPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	page.IsAuthenticated = true
 	http.Redirect(w, r, "./questionnaire", http.StatusMovedPermanently)
 }
 
@@ -420,11 +508,22 @@ var sessionHandler = func(next http.Handler) http.Handler {
 		requestPath := r.URL.Path
 
 		for _, value := range authRequired {
+
 			if value == requestPath {
-				if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
-					http.Error(w, "Forbidden", http.StatusForbidden)
+
+				user := getUser(session)
+
+				if auth := user.Authenticated; !auth {
+					session.AddFlash("You don't have access!")
+					err := session.Save(r, w)
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+						return
+					}
+					http.Redirect(w, r, "/forbidden", http.StatusFound)
 					return
 				}
+
 			}
 		}
 
@@ -434,8 +533,6 @@ var sessionHandler = func(next http.Handler) http.Handler {
 }
 
 func main() {
-
-	page = PageData{}
 
 	router := mux.NewRouter()
 
