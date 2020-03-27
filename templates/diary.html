@@ -1,0 +1,72 @@
+{{ define "content" }}
+
+<div class="row mt-5">
+  <div class="col-md-6"><h1 class="mb-4">Minu päevik</h1></div>
+  <div class="col-md-6 text-right"><a href="/questionnaire" class="btn btn-kati">Lisa uus</a></div>
+</div>
+
+<p>Oma päevikus saad vaadata varasemaid tulemusi ning nende muutumist ajas.</p>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Kuupäev</th>
+        <th scope="col">Haige/Kokkupuude haigega</th>
+        <th scope="col">Palavik</th>
+        <th scope="col">Tulemus</th>
+        <th scope="col" class="text-center">Raport</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>03.03.2020</td>
+        <td>ei</td>
+        <td>-</td>
+        <td>Terve</td>
+        <td class="text-center"><a href=""><i class="far fa-file-alt" style="font-size:1.3rem"></i></a></td>
+      </tr>
+      <tr>
+        <td>04.03.2020</td>
+        <td>jah</td>
+        <td>38.5</td>
+        <td>Perearst</td>
+        <td class="text-center"><a href=""><i class="far fa-file-alt" style="font-size:1.3rem"></i></a></td>
+      </tr>
+      <tr>
+        <td>08.03.2020</td>
+        <td>jah</td>
+        <td>-</td>
+        <td>Kiirabi</td>
+        <td class="text-center"><a href=""><i class="far fa-file-alt" style="font-size:1.3rem"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Päev', 'Temperatuur'],
+        [ 4,      38.5],
+      ]);
+
+      var options = {
+        title: 'Palavik',
+        hAxis: {title: 'Päev', minValue: 0, maxValue: 30},
+        vAxis: {title: 'Temperatuur', minValue: 0, maxValue: 45},
+        legend: 'none'
+      };
+
+      var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+  </script>  
+
+  <h1 class="text-center">Graafikud</h1>
+
+  <div id="chart_div"></div>
+
+{{ end }}

@@ -1,0 +1,122 @@
+{{ define "layout" }}
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{.Title}} | KATI</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">    
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+            <a class="navbar-brand" href="/">Kati</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/datafeed">Andmestik</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/support">Tugi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Kontakt</a>
+                    </li>
+                    {{if .IsAuthenticated}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownuser" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Isiklik</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownuser">
+                            <a class="dropdown-item" href="/diary">Päevik</a>
+                            <a class="dropdown-item" href="/questionnaire">Andmete sisestamine</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout">Logi välja</a>
+                        </div>
+                    </li>
+                    {{end}}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        {{ template "content" .}}
+
+        <footer class="pt-5 my-md-5 pt-md-5 border-top mt-5">
+            <div class="row">
+                <div class="col-12 col-md">
+                    KATI<br>
+                    <small class="d-block mb-3 text-muted">RaulWalter &copy; 2020</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Olulised viited</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="https://kriis.ee" target="_blank">Eriolukorra veebileht</a></li>
+                        <li><a class="text-muted" href="https://www.terviseamet.ee" target="_blank">Terviseamet</a></li>
+                        <li><a class="text-muted" href="https://www.politsei.ee" target="_blank">Politsei- ja
+                                Piirivalveamet</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Andmed</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="/maps">Kaardirakendus</a></li>
+                        <li><a class="text-muted" href="/api">Kati API</a></li>
+                        <li><a class="text-muted" href="/datafeed">Diagrammid</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Meist</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="/privacy">Privaatsustingimused</a></li>
+                        <li><a class="text-muted" href="/contact">Kontaktid</a></li>
+                        <li><a class="text-muted" href="/faq">Korduvad küsimused</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="/scripts/script.js"></script>
+
+</body>
+
+</html>
+{{ end }}

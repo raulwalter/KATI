@@ -1,0 +1,55 @@
+{{ define "content" }}
+
+<h1 class="mb-4 text-center mt-5">COVID-19 kaart</h1>
+<p class="text-center">Kinnitatud haigusjuhte miljoni elaniku kohta</p>
+<div id="regions_div"></div>
+
+<h1 class="mb-4 text-center mt-5">Olukord Eestis</h1>
+
+<p class="text-center">Järgnevad andmed on kogutud ja pärinevad avalikest allikatest.</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <p class="text-muted text-center">Haigestunud</p>
+        <h1 class="text-center">{{ .Country.Confirmed.Value}}</h1>
+    </div>
+    <div class="col-md-4">
+        <p class="text-muted text-center">Paranenud</p>
+        <h1 class="text-center">{{ .Country.Recovered.Value}}</h1>
+    </div>
+    <div class="col-md-4">
+        <p class="text-muted text-center">Surnud</p>
+        <h1 class="text-center">{{ .Country.Deaths.Value}}</h1>
+    </div>
+</div>
+
+<p class="text-center text-small mt-3 text-muted">Eesti andmed seisuga {{ .Country.LastUpdate}}</p>
+
+<script>
+    google.charts.load('current', {
+        'packages': ['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+            ['Country', 'Confirmed'],
+            {{ range $k, $v:= .World }}
+    ['{{ $k }}', {{ $v }}],
+        {{ end }}
+        ]);
+
+    var options = {
+        colorAxis: {colors: ['#4374e0', '#e7711c']}
+    };
+
+    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+    chart.draw(data, options);
+    }    
+</script>
+
+{{ end }}

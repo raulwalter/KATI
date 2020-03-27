@@ -1,0 +1,21 @@
+{{ define "content" }}
+<h1 class="mb-4 mt-5 text-center">{{.CurrentQuestion.Question}}</h1>
+<p class="text-center mb-4">{{.CurrentQuestion.Description}}</p>
+<div class="list-group pr-5 pl-5">
+    <form action="/answer/1">
+        {{range .CurrentQuestion.Answers}}
+
+        <div class="form-group row">
+            <label for="formfield" class="col-sm-5 col-form-label font-weight-bold text-right">{{.Caption}}</label>
+            <div class="col-sm-3">
+                <input type="text" name="form-name" class="form-control" id="formfield" value="" required>
+            </div>
+        </div>
+
+        {{end}}
+        <div class="text-center">
+            <button type="submit" class="btn btn-secondary">Edasi</button>
+        </div>
+    </form>
+</div>
+{{ end }}

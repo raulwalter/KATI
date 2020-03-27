@@ -1,0 +1,56 @@
+@font-face{font-family:'Aino';src:url("/fonts/Aino/Aino_31_170411-Regular.woff") format("woff");font-weight:normal;font-style:normal}
+@font-face{font-family:'Aino';src:url("/fonts/Aino/Aino_31_170411-Bold.woff") format("woff");font-weight:bold;font-style:normal}
+@font-face{font-family:'Aino Headline';src:url("/fonts/Aino/Aino-Headline.woff") format("woff");font-weight:bold;font-style:normal}
+
+body {
+    font-family: Aino;
+    font-size: 1.1rem;
+}
+
+.bg-light {
+    background-color: #fff!important;
+}
+
+.navbar-brand {
+    font-family: Aino!important;
+    color: #1300EF!important;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-family: Aino!important;
+    color: #1300EF!important;
+}
+
+.list-group-item, td, th {
+    font-family: Aino!important;
+}
+
+th, .list-group-item:hover {
+    color: #1300EF!important;
+}
+
+.nav-link:hover {
+    text-decoration: none!important;
+}
+
+.btn-action {
+    min-width: 200px;
+}
+
+.btn-kati{color:#fff;background-color:#0000f0;border-color:#0000f0;font-family: Aino;font-weight: 400;border-radius: 1.3rem;}
+.btn-kati:hover{color:#fff;background-color:#0B00B4;border-color:#0B00B4}
+.btn-kati:focus,.btn-kati.focus{box-shadow:0 0 0 .2rem #0000f0}
+.btn-kati.disabled,.btn-kati:disabled{color:#fff;background-color:#0000f0;border-color:#0B00B4}
+.btn-kati:not(:disabled):not(.disabled):active,.btn-kati:not(:disabled):not(.disabled).active,.show>.btn-kati.dropdown-toggle{color:#fff;background-color:#0000f0;border-color:#000}
+.btn-kati:not(:disabled):not(.disabled):active:focus,.btn-kati:not(:disabled):not(.disabled).active:focus,.show>.btn-kati.dropdown-toggle:focus{box-shadow:0 0 0 .2rem #0B00B4}
+
+h1 {
+    color: blue;
+    font-family: Aino;
+}
+
+h3 {
+    font-family: Aino;
+}

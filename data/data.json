@@ -1,0 +1,139 @@
+[
+    {
+        "question": "Küsimustiku täitmine",
+        "description": "Küsimustiku eesmärk on aidata teil otsustada sobiva arstiabi üle ning võimaldada teil pidada päevikut oma tervise üle. See süsteem pole ette nähtud haiguste või muude seisundite, sealhulgas COVID-19 diagnoosimiseks või raviks.",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Enda eest",
+                "value": 1,
+                "next": 2
+            },
+            {
+                "caption": "Pereliikme eest", 
+                "value": 0,
+                "next": 1
+            }
+        ]
+    },
+    {
+        "question": "Sisesta isikukood",
+        "description": "Sisesta pereliikme või lähedase isikukood",
+        "type": "input",
+        "answers": [
+            {
+                "caption": "Isikukood",
+                "value": 1,
+                "next": 2
+            }
+        ]
+    },
+    {
+        "question": "Kas olete haige või hoolitsete kellegi eest, kes on haige?",
+        "description": "",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Jah",
+                "value": 1,
+                "next": 3
+            },
+            {
+                "caption": "Ei",
+                "value": 0,
+                "next": -1
+            }
+        ]
+    },
+    {
+        "question": "Kas teil on mõni järgmistest eluohtlikest sümptomitest?",
+        "description": "",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Ei esine mingeid eluohtlikke sümptomeid",
+                "value": 0,
+                "next": 4
+            },
+            {
+                "caption": "Õhupuudus või ei saa rääkida ilma hinge kinni hoidmata (eriti raske hingamine)",
+                "value": 1,
+                "next": -1
+            },
+            {
+                "caption": "Sinise värvi huuled või nägu",
+                "value": 2,
+                "next": -1
+            },
+            {
+                "caption": "Tugev ja pidev valu või rõhk rinnus",
+                "value": 3,
+                "next": -1
+            },
+            {
+                "caption": "Raske ja pidev pearinglus või peapööritus",
+                "value": 4,
+                "next": -1
+            },
+            {
+                "caption": "Teadvusetu või väga raske üles ärgata",
+                "value": 5,
+                "next": -1
+            },
+            {
+                "caption": "Hägune kõne (uus või halvenev)",
+                "value": 6,
+                "next": -1
+            },
+            {
+                "caption": "Tekkinud krambid või krambid, mis ei peatu",
+                "value": 7,
+                "next": -1
+            }
+        ]
+    },
+    {
+        "question": "Kas teil on mõni järgmistest?",
+        "description": "",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Mõõdukas kuni raske hingamisraskus (ei saa täislauseid rääkida)",
+                "value": 1,
+                "next": -1
+            },
+            {
+                "caption": "Vere köha (rohkem kui umbes 1 teelusikatäis)",
+                "value": 2,
+                "next": -1
+            },
+            {
+                "caption": "Madala vererõhu tunnused (külma tunne, kahvatu, tuulevaikne nahk, peanahk, seista liiga nõrk)",
+                "value": 3,
+                "next": -1
+            },
+            {
+                "caption": "Pole ühtegi ülaltoodust",
+                "value": 0,
+                "next": 5
+            }
+        ]
+    },
+    {
+        "question": "Kas oled puutunud kokku COVID-19'ga?",
+        "description": "Oled olnud kontaktis kellegagi, kellel on diagnoositud COVID-19? Elad või külastad kohti, kus COVID-19 levib?",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Jah",
+                "value": 1,
+                "next": -1
+            },
+            {
+                "caption": "Ei",
+                "value": 0,
+                "next": -1
+            }
+        ]
+    }
+]

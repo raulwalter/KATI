@@ -1,0 +1,8 @@
+{{ define "content" }}
+<h1 class="mb-4 mt-5 text-center">{{.CurrentQuestion.Question}}</h1>
+<div class="list-group pr-5 pl-5">
+    {{range .CurrentQuestion.Answers}}
+        <a href="/answer/{{.Value}}" class="list-group-item list-group-item-action">{{.Caption}}</a>
+    {{end}}
+</div>
+{{ end }}
