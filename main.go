@@ -2,13 +2,10 @@ package main
 
 import (
 	"encoding/gob"
-	"encoding/json"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -21,82 +18,6 @@ var (
 	store *sessions.CookieStore
 )
 
-// User holds a users account information
-type User struct {
-	Username      string
-	Authenticated bool
-	Questions     []Question
-}
-
-// PageData holds a generic page data
-type PageData struct {
-	Title                string
-	IsAuthenticated      bool
-	CurrentQuestionIndex int
-	CurrentQuestion      Question
-	DiagnoseHTML         template.HTML
-}
-
-// Question holds questions to users
-type Question struct {
-	Title       string   `json:"question"`
-	Type        string   `json:"type"`
-	Description string   `json:"description"`
-	Answers     []Answer `json:"answers"`
-	Result      interface{}
-}
-
-// Answer holds the question possible answers
-type Answer struct {
-	Caption string `json:"caption"`
-	Value   int    `json:"value"`
-	Next    int    `json:"next"`
-}
-
-// Diagnose hold quetions result messages
-type Diagnose struct {
-	QuestionID int    `json:"question"`
-	Result     int    `json:"result"`
-	Message    string `json:"diagnose"`
-}
-
-// CoVidCountry holds CoVID-19 information from country
-type CoVidCountry struct {
-	Confirmed struct {
-		Value  int    `json:"value"`
-		Detail string `json:"detail"`
-	} `json:"confirmed"`
-	Recovered struct {
-		Value  int    `json:"value"`
-		Detail string `json:"detail"`
-	} `json:"recovered"`
-	Deaths struct {
-		Value  int    `json:"value"`
-		Detail string `json:"detail"`
-	} `json:"deaths"`
-	LastUpdate time.Time `json:"lastUpdate"`
-}
-
-// CoVidMap holds COVID-19 information
-type CoVidMap struct {
-	ProvinceState interface{} `json:"provinceState"`
-	CountryRegion string      `json:"countryRegion"`
-	LastUpdate    int64       `json:"lastUpdate"`
-	Lat           float64     `json:"lat"`
-	Long          float64     `json:"long"`
-	Confirmed     float64     `json:"confirmed"`
-	Recovered     int         `json:"recovered"`
-	Deaths        int         `json:"deaths"`
-	Active        int         `json:"active"`
-	Admin2        interface{} `json:"admin2"`
-	Fips          interface{} `json:"fips"`
-	CombinedKey   string      `json:"combinedKey"`
-	IncidentRate  interface{} `json:"incidentRate"`
-	PeopleTested  interface{} `json:"peopleTested"`
-	Iso2          string      `json:"iso2,omitempty"`
-	Iso3          string      `json:"iso3,omitempty"`
-}
-
 func init() {
 	authKeyOne := securecookie.GenerateRandomKey(64)
 	encryptionKeyOne := securecookie.GenerateRandomKey(32)
@@ -107,6 +28,7 @@ func init() {
 	)
 
 	store.Options = &sessions.Options{
+		Path:     "/",
 		MaxAge:   60 * 15,
 		HttpOnly: true,
 	}
@@ -135,48 +57,6 @@ func isAuthenticated(r *http.Request) bool {
 	return true
 }
 
-// Read questions from file
-func getQuestions() []Question {
-	questions := &[]Question{}
-	file, _ := ioutil.ReadFile("data/data.json")
-	_ = json.Unmarshal([]byte(file), &questions)
-	return *questions
-}
-
-// Get population
-func getPopulation() map[string]int {
-
-	var m map[string]int
-	m = make(map[string]int)
-
-	type Population struct {
-		Country    string `json:"country"`
-		Population string `json:"population"`
-	}
-
-	population := &[]Population{}
-	file, _ := ioutil.ReadFile("data/population.json")
-	_ = json.Unmarshal([]byte(file), &population)
-
-	for _, p := range *population {
-		i, err := strconv.Atoi(p.Population)
-		fmt.Println(i)
-		if err == nil {
-			m[p.Country] = i
-		}
-	}
-
-	return m
-}
-
-// Get diagnose
-func getDiagnoses() []Diagnose {
-	diagnose := &[]Diagnose{}
-	file, _ := ioutil.ReadFile("data/eval.json")
-	_ = json.Unmarshal([]byte(file), &diagnose)
-	return *diagnose
-}
-
 // Analyse result
 func analyseResult(r *http.Request) string {
 
@@ -191,41 +71,6 @@ func analyseResult(r *http.Request) string {
 		}
 	}
 	return message
-}
-
-// Get CoVid Estonia data
-func getCovCountry() (CoVidCountry, error) {
-	var cov CoVidCountry
-	url := "https://covid19.mathdro.id/api/countries/Estonia"
-	res, err := http.Get(url)
-	if err != nil {
-		return cov, err
-	}
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return cov, err
-	}
-
-	json.Unmarshal(body, &cov)
-	return cov, nil
-}
-
-// Get all data for map use
-func getCoVidMap() ([]CoVidMap, error) {
-	var cov []CoVidMap
-	url := "https://covid19.mathdro.id/api/confirmed"
-	res, err := http.Get(url)
-	if err != nil {
-		return cov, err
-	}
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return cov, err
-	}
-
-	json.Unmarshal(body, &cov)
-	return cov, nil
 }
 
 // Proccess answerx
