@@ -1,14 +1,16 @@
 {{ define "content" }}
-<h1 class="mb-4 mt-5 text-center">{{.CurrentQuestion.Question}}</h1>
+<h1 class="mb-4 mt-5 text-center">{{.CurrentQuestion.Title}}</h1>
 <p class="text-center mb-4">{{.CurrentQuestion.Description}}</p>
 <div class="list-group pr-5 pl-5">
-    <form action="/answer/1">
+    <form action="/answer/{{ .CurrentQuestionIndex }}">
+        
         {{range .CurrentQuestion.Answers}}
 
+        <input type="hidden" name="next_question" id="next_question" value="{{.Next}}"/>    
         <div class="form-group row">
             <label for="formfield" class="col-sm-5 col-form-label font-weight-bold text-right">{{.Caption}}</label>
             <div class="col-sm-3">
-                <input type="text" name="form-name" class="form-control" id="formfield" value="" required>
+                <input type="text" name="user_answer" class="form-control" id="user_answer" value="" required>
             </div>
         </div>
 
