@@ -1,9 +1,14 @@
 {{ define "content" }}
-<h1 class="mb-4 mt-5 text-center">{{.CurrentQuestion.Question}}</h1>
+<h1 class="mb-4 mt-5 text-center">{{.CurrentQuestion.Title}}</h1>
 <p class="text-center mb-4">{{.CurrentQuestion.Description}}</p>
-    <div class="list-group align-items-center mr-auto ml-auto" style="max-width: 700px;">
-        {{range .CurrentQuestion.Answers}}
-        <a href="/answer/{{.Value}}" class="list-group-item list-group-item-action">{{.Caption}}</a>
-        {{end}}
-    </div>
+<form action="/answer/{{ .CurrentQuestionIndex }}" id="questionForm">
+<input type="hidden" name="user_answer" id="user_answer" value=""/>    
+<input type="hidden" name="next_question" id="next_question" value=""/>    
+<div class="list-group align-items-center mr-auto ml-auto" style="max-width: 700px;">
+    {{range .CurrentQuestion.Answers}}
+    <a href="#"
+        class="list-group-item list-group-item-action submit-answer" data-value="{{.Value}}" data-next="{{.Next}}">{{.Caption}}</a>
+    {{end}}
+</div>
+</form>
 {{ end }}

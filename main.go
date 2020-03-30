@@ -16,87 +16,52 @@ import (
 	"github.com/gorilla/sessions"
 )
 
-var currentQuestionID int
-var questions []DiagQuestion
+var (
+	// Store will hold all session data
+	store *sessions.CookieStore
+)
 
 // User holds a users account information
 type User struct {
 	Username      string
 	Authenticated bool
+	Questions     []Question
 }
 
-// Store will hold all session data
-var store *sessions.CookieStore
-
-func init() {
-	authKeyOne := securecookie.GenerateRandomKey(64)
-	encryptionKeyOne := securecookie.GenerateRandomKey(32)
-
-	store = sessions.NewCookieStore(
-		authKeyOne,
-		encryptionKeyOne,
-	)
-
-	store.Options = &sessions.Options{
-		MaxAge:   60 * 15,
-		HttpOnly: true,
-	}
-
-	gob.Register(User{})
-}
-
-func getUser(s *sessions.Session) User {
-	val := s.Values["user"]
-	var user = User{}
-	user, ok := val.(User)
-	if !ok {
-		return User{Authenticated: false}
-	}
-	return user
-}
-
-func isAuthenticated(r *http.Request) bool {
-	session, _ := store.Get(r, "kati-session")
-	user := getUser(session)
-	if auth := user.Authenticated; !auth {
-		return false
-	}
-	return true
-}
-
-// PageData ...
+// PageData holds a generic page data
 type PageData struct {
-	Title           string
-	IsAuthenticated bool
-	CurrentQuestion DiagQuestion
-	DiagnoseHTML    template.HTML
+	Title                string
+	IsAuthenticated      bool
+	CurrentQuestionIndex int
+	CurrentQuestion      Question
+	DiagnoseHTML         template.HTML
 }
 
-// DiagQuestion ...
-type DiagQuestion struct {
-	Question    string   `json:"question"`
+// Question holds questions to users
+type Question struct {
+	Title       string   `json:"question"`
 	Type        string   `json:"type"`
 	Description string   `json:"description"`
 	Answers     []Answer `json:"answers"`
 	Result      interface{}
 }
 
-// Answer ...
+// Answer holds the question possible answers
 type Answer struct {
 	Caption string `json:"caption"`
 	Value   int    `json:"value"`
 	Next    int    `json:"next"`
 }
 
-// Diagnose ...
+// Diagnose hold quetions result messages
 type Diagnose struct {
 	QuestionID int    `json:"question"`
 	Result     int    `json:"result"`
 	Message    string `json:"diagnose"`
 }
 
-// CovCountry ...
-type CovCountry struct {
+// CoVidCountry holds CoVID-19 information from country
+type CoVidCountry struct {
 	Confirmed struct {
 		Value  int    `json:"value"`
 		Detail string `json:"detail"`
@@ -112,7 +77,7 @@ type CovCountry struct {
 	LastUpdate time.Time `json:"lastUpdate"`
 }
 
-// CoVidMap ...
+// CoVidMap holds COVID-19 information
 type CoVidMap struct {
 	ProvinceState interface{} `json:"provinceState"`
 	CountryRegion string      `json:"countryRegion"`
@@ -132,9 +97,47 @@ type CoVidMap struct {
 	Iso3          string      `json:"iso3,omitempty"`
 }
 
+func init() {
+	authKeyOne := securecookie.GenerateRandomKey(64)
+	encryptionKeyOne := securecookie.GenerateRandomKey(32)
+
+	store = sessions.NewCookieStore(
+		authKeyOne,
+		encryptionKeyOne,
+	)
+
+	store.Options = &sessions.Options{
+		MaxAge:   60 * 15,
+		HttpOnly: true,
+	}
+
+	gob.Register(User{})
+}
+
+// Get current user
+func getUser(s *sessions.Session) User {
+	val := s.Values["user"]
+	var user = User{}
+	user, ok := val.(User)
+	if !ok {
+		return User{Authenticated: false}
+	}
+	return user
+}
+
+// Is user authenticated
+func isAuthenticated(r *http.Request) bool {
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+	if auth := user.Authenticated; !auth {
+		return false
+	}
+	return true
+}
+
 // Read questions from file
-func getQuestions() []DiagQuestion {
-	questions := &[]DiagQuestion{}
+func getQuestions() []Question {
+	questions := &[]Question{}
 	file, _ := ioutil.ReadFile("data/data.json")
 	_ = json.Unmarshal([]byte(file), &questions)
 	return *questions
@@ -175,38 +178,30 @@ func getDiagnoses() []Diagnose {
 }
 
 // Analyse result
-func analyseResult() string {
+func analyseResult(r *http.Request) string {
+
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+
 	message := ""
 	diagnoses := getDiagnoses()
 	for _, d := range diagnoses {
-		if questions[d.QuestionID].Result == d.Result {
+		if user.Questions[d.QuestionID].Result == d.Result {
 			message = d.Message
 		}
 	}
 	return message
 }
 
-// Get next question ID
-func getNextQuestionID(answerID int) int {
-	answers := questions[currentQuestionID].Answers
-	for _, a := range answers {
-		if a.Value == answerID {
-			return a.Next
-		}
-	}
-	return 0
-}
-
 // Get CoVid Estonia data
-func getCovCountry() (CovCountry, error) {
-	var cov CovCountry
+func getCovCountry() (CoVidCountry, error) {
+	var cov CoVidCountry
 	url := "https://covid19.mathdro.id/api/countries/Estonia"
 	res, err := http.Get(url)
 	if err != nil {
 		return cov, err
 	}
 	body, err := ioutil.ReadAll(res.Body)
-
 	if err != nil {
 		return cov, err
 	}
@@ -237,18 +232,35 @@ func getCoVidMap() ([]CoVidMap, error) {
 func proccessAnswer(w http.ResponseWriter, r *http.Request) {
 
 	params := mux.Vars(r)
-	answerID, _ := strconv.Atoi(params["id"])
+	questionIndex, _ := strconv.Atoi(params["question"])
+	nextQuestionIndex, _ := strconv.Atoi(r.URL.Query().Get("next_question"))
+	userAnswer := r.URL.Query().Get("user_answer")
 
-	questions[currentQuestionID].Result = answerID
-	currentQuestionID = getNextQuestionID(answerID)
+	fmt.Println("Question:", questionIndex, "Answer:", userAnswer, "Next:", nextQuestionIndex)
 
-	if currentQuestionID == -1 {
-		currentQuestionID = 0
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+
+	if len(user.Questions) > 0 {
+
+		fmt.Println("Storing result ...")
+		user.Questions[questionIndex].Result = userAnswer
+		session.Values["user"] = user
+		err := session.Save(r, w)
+		if err != nil {
+			// TODO
+			fmt.Println(err)
+		}
+		fmt.Println(user.Questions[questionIndex].Result)
+
+	}
+
+	if nextQuestionIndex == -1 {
 		http.Redirect(w, r, "/done", http.StatusSeeOther)
 		return
 	}
 
-	http.Redirect(w, r, "/questionnaire"+fmt.Sprintf("/%v", currentQuestionID), http.StatusSeeOther)
+	http.Redirect(w, r, "/questionnaire"+fmt.Sprintf("/%v", nextQuestionIndex), http.StatusSeeOther)
 }
 
 // Startig page
@@ -268,19 +280,6 @@ func getDefault(w http.ResponseWriter, r *http.Request) {
 
 	t, _ := template.ParseFiles("templates/index.html", "templates/login.html")
 	t.ExecuteTemplate(w, "layout", page)
-
-}
-
-// Logout
-func logout(w http.ResponseWriter, r *http.Request) {
-
-	session, _ := store.Get(r, "kati-session")
-
-	session.Values["user"] = User{}
-	session.Options.MaxAge = -1
-
-	session.Save(r, w)
-	http.Redirect(w, r, "/", http.StatusSeeOther)
 
 }
 
@@ -388,7 +387,7 @@ func dataFeed(w http.ResponseWriter, r *http.Request) {
 	type FeedPage struct {
 		Title           string
 		IsAuthenticated bool
-		Country         CovCountry
+		Country         CoVidCountry
 		World           map[string]float64
 	}
 
@@ -433,41 +432,37 @@ func dataFeed(w http.ResponseWriter, r *http.Request) {
 func questionnaire(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 
-	var err error
-
 	params := mux.Vars(r)
-	currentQuestionID, err = strconv.Atoi(params["id"])
+	questionIndex, err := strconv.Atoi(params["id"])
 	if err != nil {
-		currentQuestionID = 0
+		questionIndex = 0
 	}
 
 	page := &PageData{}
 	page.Title = "Küsimustik"
 	page.IsAuthenticated = isAuthenticated(r)
-	currentQuestionID, err = strconv.Atoi(params["id"])
-	if err != nil {
-		currentQuestionID = 0
-	}
+	page.CurrentQuestionIndex = questionIndex
 
-	page.CurrentQuestion = questions[currentQuestionID]
-	questionType := questions[currentQuestionID].Type
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+
+	page.CurrentQuestion = user.Questions[questionIndex]
+	questionType := user.Questions[questionIndex].Type
 
 	t, _ := template.ParseFiles("templates/index.html", "templates/form_"+questionType+".html")
 	t.ExecuteTemplate(w, "layout", page)
 }
 
-// Last page after questions
-func lastPage(w http.ResponseWriter, r *http.Request) {
+// Show result after questions
+func resultPage(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 
 	// TODO: Store result to database
 
 	page := &PageData{}
 	page.Title = "Test tehtud"
-	page.DiagnoseHTML = template.HTML(analyseResult())
+	page.DiagnoseHTML = template.HTML(analyseResult(r))
 	page.IsAuthenticated = isAuthenticated(r)
-
-	questions = getQuestions()
 
 	t, _ := template.ParseFiles("templates/index.html", "templates/done.html")
 	t.ExecuteTemplate(w, "layout", page)
@@ -478,13 +473,12 @@ func loginPost(w http.ResponseWriter, r *http.Request) {
 
 	//TODO: TARA login
 
-	questions = getQuestions()
-
 	session, _ := store.Get(r, "kati-session")
 
 	user := &User{
 		Username:      "37701130004",
 		Authenticated: true,
+		Questions:     getQuestions(),
 	}
 
 	session.Values["user"] = user
@@ -495,7 +489,17 @@ func loginPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, "./questionnaire", http.StatusMovedPermanently)
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+}
+
+// Logout
+func logout(w http.ResponseWriter, r *http.Request) {
+	session, _ := store.Get(r, "kati-session")
+	session.Values["user"] = User{}
+	session.Options.MaxAge = -1
+
+	session.Save(r, w)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 // Session handler
@@ -540,7 +544,7 @@ func main() {
 
 	router.HandleFunc("/", getDefault).Methods("GET")
 	router.HandleFunc("/datafeed", dataFeed).Methods("GET")
-	router.HandleFunc("/done", lastPage).Methods("GET")
+	router.HandleFunc("/done", resultPage).Methods("GET")
 	router.HandleFunc("/api", api).Methods("GET")
 	router.HandleFunc("/maps", maps).Methods("GET")
 	router.HandleFunc("/privacy", privacy).Methods("GET")
@@ -550,7 +554,7 @@ func main() {
 	router.HandleFunc("/support", support).Methods("GET")
 	router.HandleFunc("/questionnaire", questionnaire).Methods("GET")
 	router.HandleFunc("/questionnaire/{id:[0-9]+}", questionnaire).Methods("GET")
-	router.HandleFunc("/answer/{id:[0-9]+}", proccessAnswer).Methods("GET")
+	router.HandleFunc("/answer/{question:[0-9]+}", proccessAnswer).Methods("GET")
 	router.HandleFunc("/login", loginPost).Methods("POST")
 	router.HandleFunc("/logout", logout).Methods("GET")
 
