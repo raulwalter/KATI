@@ -66,7 +66,10 @@ func analyseResult(r *http.Request) string {
 	message := ""
 	diagnoses := getDiagnoses()
 	for _, d := range diagnoses {
+
+		fmt.Println(d.QuestionID, user.Questions[d.QuestionID].Result, d.Result, user.Questions[d.QuestionID].Result == d.Result)
 		if user.Questions[d.QuestionID].Result == d.Result {
+			fmt.Println(user.Questions[d.QuestionID].Result, d.Result)
 			message = d.Message
 		}
 	}
@@ -88,7 +91,6 @@ func proccessAnswer(w http.ResponseWriter, r *http.Request) {
 
 	if len(user.Questions) > 0 {
 
-		fmt.Println("Storing result ...")
 		user.Questions[questionIndex].Result = userAnswer
 		session.Values["user"] = user
 		err := session.Save(r, w)
@@ -96,8 +98,10 @@ func proccessAnswer(w http.ResponseWriter, r *http.Request) {
 			// TODO
 			fmt.Println(err)
 		}
-		fmt.Println(user.Questions[questionIndex].Result)
+	}
 
+	for i, q := range user.Questions {
+		fmt.Println(i, q.Title, q.Result)
 	}
 
 	if nextQuestionIndex == -1 {

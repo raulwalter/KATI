@@ -39,9 +39,9 @@ type Answer struct {
 
 // Diagnose hold quetions result messages
 type Diagnose struct {
-	QuestionID int    `json:"question"`
-	Result     int    `json:"result"`
-	Message    string `json:"diagnose"`
+	QuestionID int         `json:"question"`
+	Result     interface{} `json:"result"`
+	Message    string      `json:"diagnose"`
 }
 
 // CoVidCountry holds CoVID-19 information from country
