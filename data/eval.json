@@ -1,42 +1,42 @@
 [
     {
         "question": 2,
-        "result": 0,
+        "result": "0",
         "diagnose": "<div class=\"alert alert-primary\" role=\"alert\"><p>Tundub, et tunnete end praegu hästi<br>Lisateavet COVID-19 leiate <a href=\"https://www.kriis.ee/et\" target=\"_blank\">kriis.ee veebisaidilt</a>.</p></div>"
     },
     {
         "question": 3,
-        "result": 1,
+        "result": "1",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     },
     {
         "question": 3,
-        "result": 2,
+        "result": "2",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     },
     {
         "question": 3,
-        "result": 3,
+        "result": "3",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     },
     {
         "question": 3,
-        "result": 4,
+        "result": "4",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     },
     {
         "question": 3,
-        "result": 5,
+        "result": "5",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     },
     {
         "question": 3,
-        "result": 6,
+        "result": "6",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     },
     {
         "question": 3,
-        "result": 7,
+        "result": "7",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     }
 ]

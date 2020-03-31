@@ -27,21 +27,21 @@ type Question struct {
 	Type        string   `json:"type"`
 	Description string   `json:"description"`
 	Answers     []Answer `json:"answers"`
-	Result      interface{}
+	Result      string
 }
 
 // Answer holds the question possible answers
 type Answer struct {
 	Caption string `json:"caption"`
-	Value   int    `json:"value"`
+	Value   string `json:"value"`
 	Next    int    `json:"next"`
 }
 
 // Diagnose hold quetions result messages
 type Diagnose struct {
-	QuestionID int         `json:"question"`
-	Result     interface{} `json:"result"`
-	Message    string      `json:"diagnose"`
+	QuestionID int    `json:"question"`
+	Result     string `json:"result"`
+	Message    string `json:"diagnose"`
 }
 
 // CoVidCountry holds CoVID-19 information from country

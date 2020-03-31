@@ -6,12 +6,12 @@
         "answers": [
             {
                 "caption": "Enda eest",
-                "value": 1,
+                "value": "1",
                 "next": 2
             },
             {
                 "caption": "Pereliikme eest", 
-                "value": 0,
+                "value": "0",
                 "next": 1
             }
         ]
@@ -23,7 +23,7 @@
         "answers": [
             {
                 "caption": "Isikukood",
-                "value": 1,
+                "value": "1",
                 "next": 2
             }
         ]
@@ -35,12 +35,12 @@
         "answers": [
             {
                 "caption": "Jah",
-                "value": 1,
+                "value": "1",
                 "next": 3
             },
             {
                 "caption": "Ei",
-                "value": 0,
+                "value": "0",
                 "next": -1
             }
         ]
@@ -52,42 +52,42 @@
         "answers": [
             {
                 "caption": "Ei esine mingeid eluohtlikke sümptomeid",
-                "value": 0,
+                "value": "0",
                 "next": 4
             },
             {
                 "caption": "Õhupuudus või raske hingamine",
-                "value": 1,
+                "value": "1",
                 "next": -1
             },
             {
                 "caption": "Sinised huuled või nägu",
-                "value": 2,
+                "value": "2",
                 "next": -1
             },
             {
                 "caption": "Tugev ja pidev valu või rõhk rinnus",
-                "value": 3,
+                "value": "3",
                 "next": -1
             },
             {
                 "caption": "Raske ja pidev pearinglus või peapööritus",
-                "value": 4,
+                "value": "4",
                 "next": -1
             },
             {
                 "caption": "Teadvusetu või väga raske üles ärgata",
-                "value": 5,
+                "value": "5",
                 "next": -1
             },
             {
                 "caption": "Hägune kõne (uus või halvenev)",
-                "value": 6,
+                "value": "6",
                 "next": -1
             },
             {
                 "caption": "Krambid",
-                "value": 7,
+                "value": "7",
                 "next": -1
             }
         ]
@@ -99,22 +99,22 @@
         "answers": [
             {
                 "caption": "Mõõdukas kuni raske hingamisraskus (ei saa täislauseid rääkida)",
-                "value": 1,
+                "value": "1",
                 "next": -1
             },
             {
                 "caption": "Vere köha",
-                "value": 2,
+                "value": "2",
                 "next": -1
             },
             {
                 "caption": "Madala vererõhu tunnused (külmatunne, kahvatu nahk, tasakaaluhäired)",
-                "value": 3,
+                "value": "3",
                 "next": -1
             },
             {
                 "caption": "Pole ühtegi ülaltoodust",
-                "value": 0,
+                "value": "0",
                 "next": 5
             }
         ]
@@ -126,12 +126,12 @@
         "answers": [
             {
                 "caption": "Jah",
-                "value": 1,
+                "value": "1",
                 "next": -1
             },
             {
                 "caption": "Ei",
-                "value": 0,
+                "value": "0",
                 "next": -1
             }
         ]
