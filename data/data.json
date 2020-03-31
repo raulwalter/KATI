@@ -1,5 +1,6 @@
 [
     {
+        "id":"0",
         "question": "COVID-19 enesetest",
         "description": "KATI enesediagnoosi-küsimustiku eesmärgiks on tuvastada vastaja koroonaviirusega nakatumise tõenäosusvahemik. Kogutud informatsiooni kasutatakse COVID-19 kriisi lahendamiseks.</ br>Täidan testi:",
         "type": "radio",
@@ -17,6 +18,7 @@
         ]
     },
     {
+        "id":"1",
         "question": "Sisesta isikukood",
         "description": "Sisesta pereliikme või lähedase isikukood",
         "type": "input",
@@ -29,6 +31,7 @@
         ]
     },
     {
+        "id":"2",
         "question": "Kas teil on mingeid haigustunnuseid või hoolitsete kellegi eest, kellel on haigustunnuseid?",
         "description": "",
         "type": "radio",
@@ -46,6 +49,7 @@
         ]
     },
     {
+        "id":"3",
         "question": "Kas teil on mõni järgmistest eluohtlikest sümptomitest?",
         "description": "",
         "type": "radio",
@@ -93,6 +97,7 @@
         ]
     },
     {
+        "id":"4",
         "question": "Kas teil on mõni järgmistest?",
         "description": "",
         "type": "radio",
@@ -120,6 +125,7 @@
         ]
     },
     {
+        "id":"5",
         "question": "Kas oled puutunud kokku COVID-19'ga?",
         "description": "Oled olnud kontaktis kellegagi, kellel on diagnoositud COVID-19?",
         "type": "radio",

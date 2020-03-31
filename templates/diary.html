@@ -18,27 +18,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>03.03.2020</td>
-        <td>ei</td>
-        <td>-</td>
-        <td>Terve</td>
-        <td class="text-center"><a href=""><i class="far fa-file-alt" style="font-size:1.3rem"></i></a></td>
-      </tr>
-      <tr>
-        <td>04.03.2020</td>
-        <td>jah</td>
-        <td>38.5</td>
-        <td>Perearst</td>
-        <td class="text-center"><a href=""><i class="far fa-file-alt" style="font-size:1.3rem"></i></a></td>
-      </tr>
-      <tr>
-        <td>08.03.2020</td>
-        <td>jah</td>
-        <td>-</td>
-        <td>Kiirabi</td>
-        <td class="text-center"><a href=""><i class="far fa-file-alt" style="font-size:1.3rem"></i></a></td>
-      </tr>
+      {{ range .Diary}}
+        <tr>
+            <td>{{ .CreatedAt.Format "02.01.2006" }}</td>
+            <td>{{ .GetAnswerFor "2" }}</td>
+            <td>{{ .GetAnswerFor "notReal" }}</td>
+            <td>{{ .Result }}</td>
+            <td class="text-center"><a href=""><i class="far fa-file-alt" style="font-size:1.3rem"></i></a></td>
+        </tr>
+    {{ end}}
     </tbody>
   </table>
 

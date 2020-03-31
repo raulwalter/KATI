@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/gob"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -11,6 +12,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
+	"github.com/jinzhu/gorm/dialects/postgres"
 )
 
 var (
@@ -65,12 +67,33 @@ func analyseResult(r *http.Request) string {
 
 	message := ""
 	diagnoses := getDiagnoses()
+
+	answers, err := json.Marshal(user.getAnswersMap())
+
+	if err != nil {
+		// TODO
+		fmt.Println(err)
+	}
+
 	for _, d := range diagnoses {
 
 		fmt.Println(d.QuestionID, user.Questions[d.QuestionID].Result, d.Result, user.Questions[d.QuestionID].Result == d.Result)
 		if user.Questions[d.QuestionID].Result == d.Result {
 			fmt.Println(user.Questions[d.QuestionID].Result, d.Result)
 			message = d.Message
+
+			err = saveDiaryEntry(&DiaryEntry{
+				UserName: user.Username,
+				Answers:  postgres.Jsonb{RawMessage: answers},
+				Result:   d.Status,
+			})
+
+			if err != nil {
+				// TODO
+				fmt.Println(err)
+			}
+
+			break
 		}
 	}
 	return message
@@ -139,6 +162,10 @@ func diary(w http.ResponseWriter, r *http.Request) {
 	page := &PageData{}
 	page.Title = "Päevik"
 	page.IsAuthenticated = isAuthenticated(r)
+
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+	page.Diary, _ = user.getDiaryEntries()
 
 	t, _ := template.ParseFiles("templates/index.html", "templates/diary.html")
 	t.ExecuteTemplate(w, "layout", page)

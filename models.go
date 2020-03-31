@@ -1,8 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"html/template"
 	"time"
+
+	"github.com/jinzhu/gorm/dialects/postgres"
 )
 
 // User holds a users account information
@@ -19,10 +22,12 @@ type PageData struct {
 	CurrentQuestionIndex int
 	CurrentQuestion      Question
 	DiagnoseHTML         template.HTML
+	Diary                []DiaryEntry
 }
 
 // Question holds questions to users
 type Question struct {
+	ID          string   `json:"id"`
 	Title       string   `json:"question"`
 	Type        string   `json:"type"`
 	Description string   `json:"description"`
@@ -42,6 +47,18 @@ type Diagnose struct {
 	QuestionID int    `json:"question"`
 	Result     string `json:"result"`
 	Message    string `json:"diagnose"`
+	Status     string `json:"status"`
+}
+
+// DiaryEntry holds single user diary entry
+type DiaryEntry struct {
+	ID                   uint `gorm:"primary_key"`
+	CreatedAt            time.Time
+	UserName             string
+	QuestionnaireVersion string
+	Answers              postgres.Jsonb
+	AnswersMap           map[string]interface{} `gorm:"-" json:"-"`
+	Result               string
 }
 
 // CoVidCountry holds CoVID-19 information from country
@@ -79,4 +96,35 @@ type CoVidMap struct {
 	PeopleTested  interface{} `json:"peopleTested"`
 	Iso2          string      `json:"iso2,omitempty"`
 	Iso3          string      `json:"iso3,omitempty"`
+}
+
+func (u *User) getAnswersMap() map[string]interface{} {
+	m := make(map[string]interface{})
+
+	for _, q := range u.Questions {
+		m[q.ID] = q.Result
+	}
+
+	return m
+}
+
+func (d *DiaryEntry) GetAnswerFor(id string) interface{} {
+
+	if d.AnswersMap == nil {
+		d.AnswersMap = make(map[string]interface{})
+		json.Unmarshal(d.Answers.RawMessage, &d.AnswersMap)
+	}
+
+	if v, ok := d.AnswersMap[id]; ok {
+		if id == "2" {
+			switch v {
+			case "1":
+				return "Yes"
+			case "0":
+				return "No"
+			}
+		}
+	}
+
+	return "-"
 }
