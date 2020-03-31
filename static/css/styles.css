@@ -23,7 +23,7 @@ body {
     color: #1300EF!important;
 }
 
-.list-group-item, td, th {
+.list-group-item, td, th, .card-title {
     font-family: Aino!important;
 }
 
@@ -53,4 +53,12 @@ h1 {
 
 h3 {
     font-family: Aino;
+}
+
+#mynetwork {
+    border:1px solid #eee;
+}
+
+#mynetwork:focus {
+    outline:0;  
 }

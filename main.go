@@ -228,6 +228,18 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 	t.ExecuteTemplate(w, "layout", page)
 }
 
+// Contact Network
+func contactNetwork(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+
+	page := &PageData{}
+	page.Title = "Kontaktvõrgustik"
+	page.IsAuthenticated = isAuthenticated(r)
+
+	t, _ := template.ParseFiles("templates/index.html", "templates/contactnetwork.html")
+	t.ExecuteTemplate(w, "layout", page)
+}
+
 // Datafeed
 func dataFeed(w http.ResponseWriter, r *http.Request) {
 
@@ -357,7 +369,7 @@ var sessionHandler = func(next http.Handler) http.Handler {
 
 		session, _ := store.Get(r, "kati-session")
 
-		authRequired := []string{"/questionnaire", "/answer", "/done", "/diary"}
+		authRequired := []string{"/questionnaire", "/answer", "/done", "/diary", "/contactnetwork"}
 		requestPath := r.URL.Path
 
 		for _, value := range authRequired {
@@ -401,6 +413,7 @@ func main() {
 	router.HandleFunc("/diary", diary).Methods("GET")
 	router.HandleFunc("/contact", contact).Methods("GET")
 	router.HandleFunc("/support", support).Methods("GET")
+	router.HandleFunc("/contactnetwork", contactNetwork).Methods("GET")
 	router.HandleFunc("/questionnaire", questionnaire).Methods("GET")
 	router.HandleFunc("/questionnaire/{id:[0-9]+}", questionnaire).Methods("GET")
 	router.HandleFunc("/answer/{question:[0-9]+}", proccessAnswer).Methods("GET")

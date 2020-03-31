@@ -1,0 +1,41 @@
+{{ define "content" }}
+
+<h1 class="text-center mt-4 mb-4">Kontaktvõrgustik</h1>
+
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+    // create an array with nodes
+    var nodes = [
+      {id: 1, label: '5036525', shape: 'circularImage', image: 'https://www.4dface.io/wp-content/uploads/2018/10/4DFM_sample2.jpg', font: {size:14, color:'black', face:'arial'}},
+      {id: 2, label: '5036525', font: {size:14, color:'black', face:'arial'}},
+      {id: 3, label: '5036525', shape: 'circularImage', image: 'https://pythonawesome.com/content/images/2018/11/generated.jpg', font: {size:14, color:'black', face:'arial'}},
+      {id: 4, label: '5036525', font: {size:14, color:'black', face:'arial'}},
+      {id: 5, label: '5036525', font: {size:14, color:'black', face:'arial'}}
+    ];
+  
+    // create an array with edges
+    var edges = [
+      {from: 1, to: 2},
+      {from: 1, to: 3},
+      {from: 2, to: 4},
+      {from: 2, to: 5}
+    ];
+  
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+      zoomView: false,
+      nodes : {
+        shape: 'dot',
+        size: 30
+      }
+    };
+    var network = new vis.Network(container, data, options);
+  </script>
+
+{{ end }}
