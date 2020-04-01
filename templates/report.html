@@ -1,0 +1,25 @@
+{{ define "content" }}
+
+<div class="row mt-5">
+  <div class="col-md-6"><h1 class="mb-4"><td>Raport {{ .CurrentReport.CreatedAt.Format "02.01.2006" }}</td></h1></div>
+  <div class="col-md-6 text-right"><a href="/diary" class="btn btn-kati">Tagasi</a></div>
+</div>
+ 
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Küsimus</th>
+        <th scope="col">Vastus</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range .CurrentReport.ConvertToSlice}}
+        <tr>
+            <td>{{index . "question"}}</td>
+            <td>{{index . "answer"}}</td>
+        </tr>
+    {{ end}}
+    </tbody>
+  </table>
+{{ end }}

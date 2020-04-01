@@ -23,6 +23,7 @@ type PageData struct {
 	CurrentQuestion      Question
 	DiagnoseHTML         template.HTML
 	Diary                []DiaryEntry
+	CurrentReport        DiaryEntry
 }
 
 // Question holds questions to users
@@ -58,6 +59,7 @@ type DiaryEntry struct {
 	QuestionnaireVersion string
 	Answers              postgres.Jsonb
 	AnswersMap           map[string]interface{} `gorm:"-" json:"-"`
+	Questions            []Question             `gorm:"-" json:"-"`
 	Result               string
 }
 
@@ -115,16 +117,49 @@ func (d *DiaryEntry) GetAnswerFor(id string) interface{} {
 		json.Unmarshal(d.Answers.RawMessage, &d.AnswersMap)
 	}
 
+	if d.Questions == nil {
+		d.Questions = getQuestions()
+	}
+
 	if v, ok := d.AnswersMap[id]; ok {
-		if id == "2" {
-			switch v {
-			case "1":
-				return "Yes"
-			case "0":
-				return "No"
+		for _, question := range d.Questions {
+			if question.ID == id {
+				for _, answer := range question.Answers {
+					if answer.Value == v {
+						return answer.Caption
+					}
+				}
 			}
 		}
 	}
 
 	return "-"
+}
+
+func (d *DiaryEntry) ConvertToSlice() []map[string]template.HTML {
+	questionAnswers := []map[string]template.HTML{}
+
+	if d.AnswersMap == nil {
+		d.AnswersMap = make(map[string]interface{})
+		json.Unmarshal(d.Answers.RawMessage, &d.AnswersMap)
+	}
+
+	if d.Questions == nil {
+		d.Questions = getQuestions()
+	}
+
+	for _, question := range d.Questions {
+		if v, ok := d.AnswersMap[question.ID]; ok {
+			for _, answer := range question.Answers {
+				if answer.Value == v {
+					questionAnswers = append(questionAnswers, map[string]template.HTML{
+						"question": template.HTML(question.Title),
+						"answer":   template.HTML(answer.Caption),
+					})
+				}
+			}
+		}
+	}
+
+	return questionAnswers
 }

@@ -155,6 +155,30 @@ func getDefault(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// report
+func report(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	params := mux.Vars(r)
+	reportID := params["id"]
+
+	page := &PageData{}
+	page.Title = "Raport"
+	page.IsAuthenticated = isAuthenticated(r)
+
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+	page.Diary, _ = user.getDiaryEntries()
+
+	for _, report := range page.Diary {
+		if strconv.Itoa(int(report.ID)) == reportID {
+			page.CurrentReport = report
+		}
+	}
+
+	t, _ := template.ParseFiles("templates/index.html", "templates/report.html")
+	t.ExecuteTemplate(w, "layout", page)
+}
+
 // Diary
 func diary(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
@@ -396,7 +420,7 @@ var sessionHandler = func(next http.Handler) http.Handler {
 
 		session, _ := store.Get(r, "kati-session")
 
-		authRequired := []string{"/questionnaire", "/answer", "/done", "/diary", "/contactnetwork"}
+		authRequired := []string{"/questionnaire", "/answer", "/done", "/diary", "/report", "/contactnetwork"}
 		requestPath := r.URL.Path
 
 		for _, value := range authRequired {
@@ -438,6 +462,7 @@ func main() {
 	router.HandleFunc("/privacy", privacy).Methods("GET")
 	router.HandleFunc("/faq", faq).Methods("GET")
 	router.HandleFunc("/diary", diary).Methods("GET")
+	router.HandleFunc("/report/{id:[0-9]+}", report).Methods("GET")
 	router.HandleFunc("/contact", contact).Methods("GET")
 	router.HandleFunc("/support", support).Methods("GET")
 	router.HandleFunc("/contactnetwork", contactNetwork).Methods("GET")
