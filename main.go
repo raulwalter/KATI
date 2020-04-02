@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"html/template"
 	"log"
+	"math/rand"
 	"net/http"
 	"strconv"
 
@@ -107,6 +108,13 @@ func analyseResult(r *http.Request) string {
 		fmt.Println(err)
 	}
 
+	// Check DiaryUser
+	// Replace in case user is different
+	diaryUser := user.Username
+	if user.Questions[1].Result != "" {
+		diaryUser = user.Questions[1].Result
+	}
+
 	for _, d := range diagnoses {
 
 		fmt.Println(d.QuestionID, user.Questions[d.QuestionID].Result, d.Result, user.Questions[d.QuestionID].Result == d.Result)
@@ -115,9 +123,10 @@ func analyseResult(r *http.Request) string {
 			message = d.Message
 
 			err = saveDiaryEntry(&DiaryEntry{
-				UserName: user.Username,
-				Answers:  postgres.Jsonb{RawMessage: answers},
-				Result:   d.Status,
+				UserName:  user.Username,
+				DiaryUser: diaryUser,
+				Answers:   postgres.Jsonb{RawMessage: answers},
+				Result:    d.Status,
 			})
 
 			if err != nil {
@@ -455,12 +464,17 @@ func resultPage(w http.ResponseWriter, r *http.Request) {
 // Login
 func loginPost(w http.ResponseWriter, r *http.Request) {
 
-	//TODO: TARA login
+	// TODO: TARA login
+	// Replace with TARA
+
+	// Random login
+	randomNID := []string{"37701130004", "46205124327", "36205129497", "35401020033", "45401020132", "45401020415", "50111110030", "50111111800", "60111113719", "60111114106"}
+	userNID := randomNID[rand.Intn(len(randomNID)-1)]
 
 	session, _ := store.Get(r, "kati-session")
 
 	user := &User{
-		Username:      "37701130004",
+		Username:      userNID,
 		Authenticated: true,
 		Questions:     getQuestions(),
 	}

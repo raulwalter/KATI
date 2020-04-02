@@ -56,6 +56,7 @@ type DiaryEntry struct {
 	ID                   uint `gorm:"primary_key"`
 	CreatedAt            time.Time
 	UserName             string
+	DiaryUser            string
 	QuestionnaireVersion string
 	Answers              postgres.Jsonb
 	AnswersMap           map[string]interface{} `gorm:"-" json:"-"`
