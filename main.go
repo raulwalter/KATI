@@ -3,8 +3,10 @@ package main
 import (
 	"encoding/gob"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -17,7 +19,8 @@ import (
 
 var (
 	// Store will hold all session data
-	store *sessions.CookieStore
+	store     *sessions.CookieStore
+	bootstrap map[string]*template.Template
 )
 
 func init() {
@@ -36,6 +39,24 @@ func init() {
 	}
 
 	gob.Register(User{})
+
+	bootstrap = make(map[string]*template.Template)
+	bootstrap["home"] = template.Must(template.ParseFiles("templates/index.html", "templates/login.html"))
+	bootstrap["report"] = template.Must(template.ParseFiles("templates/index.html", "templates/report.html"))
+	bootstrap["diary"] = template.Must(template.ParseFiles("templates/index.html", "templates/diary.html"))
+	bootstrap["contact"] = template.Must(template.ParseFiles("templates/index.html", "templates/contact.html"))
+	bootstrap["support"] = template.Must(template.ParseFiles("templates/index.html", "templates/support.html"))
+	bootstrap["maps"] = template.Must(template.ParseFiles("templates/index.html", "templates/maps.html"))
+	bootstrap["api"] = template.Must(template.ParseFiles("templates/index.html", "templates/api.html"))
+	bootstrap["privacy"] = template.Must(template.ParseFiles("templates/index.html", "templates/privacy.html"))
+	bootstrap["faq"] = template.Must(template.ParseFiles("templates/index.html", "templates/faq.html"))
+	bootstrap["dashboard"] = template.Must(template.ParseFiles("templates/index.html", "templates/dashboard.html"))
+	bootstrap["contactnetwork"] = template.Must(template.ParseFiles("templates/index.html", "templates/contactnetwork.html"))
+	bootstrap["datafeed"] = template.Must(template.ParseFiles("templates/index.html", "templates/datafeed.html"))
+	bootstrap["form_radio"] = template.Must(template.ParseFiles("templates/index.html", "templates/form_radio.html"))
+	bootstrap["form_input"] = template.Must(template.ParseFiles("templates/index.html", "templates/form_input.html"))
+	bootstrap["result"] = template.Must(template.ParseFiles("templates/index.html", "templates/done.html"))
+
 }
 
 // Get current user
@@ -47,6 +68,17 @@ func getUser(s *sessions.Session) User {
 		return User{Authenticated: false}
 	}
 	return user
+}
+
+// Render the template by name
+func render(w http.ResponseWriter, name string, data interface{}) error {
+	tmpl, ok := bootstrap[name]
+	if !ok {
+		err := errors.New("Template not found: " + name)
+		return err
+	}
+	err := tmpl.ExecuteTemplate(w, "layout", data)
+	return err
 }
 
 // Is user authenticated
@@ -150,8 +182,10 @@ func getDefault(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Sisene"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/login.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "home", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 }
 
@@ -175,8 +209,10 @@ func report(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/report.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "report", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Diary
@@ -191,8 +227,10 @@ func diary(w http.ResponseWriter, r *http.Request) {
 	user := getUser(session)
 	page.Diary, _ = user.getDiaryEntries()
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/diary.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "diary", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Contact
@@ -203,8 +241,10 @@ func contact(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Kontaktid"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/contact.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "contact", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Support
@@ -215,8 +255,10 @@ func support(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Tugi"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/support.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "support", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Maps
@@ -227,8 +269,10 @@ func maps(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Kaardirakendus"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/maps.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "maps", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Api
@@ -239,8 +283,10 @@ func api(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Kati API"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/api.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "api", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Privacy
@@ -251,8 +297,10 @@ func privacy(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Privaatsustingimused"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/privacy.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "privacy", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Faq
@@ -263,8 +311,10 @@ func faq(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Korduvad küsimused"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/faq.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "faq", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Dashboard
@@ -275,8 +325,10 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Dashboard"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/dashboard.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "dashboard", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Contact Network
@@ -287,8 +339,10 @@ func contactNetwork(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Kontaktvõrgustik"
 	page.IsAuthenticated = isAuthenticated(r)
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/contactnetwork.html")
-	t.ExecuteTemplate(w, "layout", page)
+	err := render(w, "contactnetwork", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Datafeed
@@ -336,8 +390,10 @@ func dataFeed(w http.ResponseWriter, r *http.Request) {
 	feed.Country = cov
 	feed.World = m
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/datafeed.html")
-	t.ExecuteTemplate(w, "layout", feed)
+	err = render(w, "datafeed", feed)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Questionnaire
@@ -361,8 +417,10 @@ func questionnaire(w http.ResponseWriter, r *http.Request) {
 	page.CurrentQuestion = user.Questions[questionIndex]
 	questionType := user.Questions[questionIndex].Type
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/form_"+questionType+".html")
-	t.ExecuteTemplate(w, "layout", page)
+	err = render(w, "form_"+questionType, page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 // Show result after questions
@@ -375,6 +433,11 @@ func resultPage(w http.ResponseWriter, r *http.Request) {
 	page.Title = "Test tehtud"
 	page.DiagnoseHTML = template.HTML(analyseResult(r))
 	page.IsAuthenticated = isAuthenticated(r)
+
+	err := render(w, "result", page)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	t, _ := template.ParseFiles("templates/index.html", "templates/done.html")
 	t.ExecuteTemplate(w, "layout", page)

@@ -110,6 +110,7 @@ func (u *User) getAnswersMap() map[string]interface{} {
 	return m
 }
 
+// GetAnswerFor ...
 func (d *DiaryEntry) GetAnswerFor(id string) interface{} {
 
 	if d.AnswersMap == nil {
@@ -136,6 +137,7 @@ func (d *DiaryEntry) GetAnswerFor(id string) interface{} {
 	return "-"
 }
 
+// ConvertToSlice ...
 func (d *DiaryEntry) ConvertToSlice() []map[string]template.HTML {
 	questionAnswers := []map[string]template.HTML{}
 

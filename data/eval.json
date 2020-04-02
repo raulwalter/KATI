@@ -48,6 +48,24 @@
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
     },
     {
+        "question": 4,
+        "result": "1",
+        "status": "Kiirabi",
+        "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
+    },
+    {
+        "question": 4,
+        "result": "2",
+        "status": "Kiirabi",
+        "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
+    },
+    {
+        "question": 4,
+        "result": "3",
+        "status": "Kiirabi",
+        "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
+    },
+    {
         "question": 7,
         "result": "1",
         "status": "Teenusepakkuja",
