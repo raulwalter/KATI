@@ -46,5 +46,49 @@
         "result": "7",
         "status": "Kiirabi",
         "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Helistage kohe 112. Vajalik on viivitamatu arstiabi.</strong><br>Teatage 112 operaatorile, kui olete olnud kontaktis inimesega, kellel on COVID-19 või kui olete hiljuti viibinud piirkonnas, kus COVID-19 levib.</p></div>"
+    },
+    {
+        "question": 7,
+        "result": "1",
+        "status": "Teenusepakkuja",
+        "diagnose": "<div class=\"alert alert-danger\" role=\"alert\"><p><strong>Võtke ühendust oma hooldusasutuses asuva tervishoiuteenuse pakkujaga.</strong><br>Elamine pikaajalises hooldusasutuses või hooldekodus võib seada teid raskete haiguste suuremasse riski. Teatage asutuse hooldajat, et olete haige ja peate võimalikult kiiresti arsti poole pöörduma.<br>Aidake kaitsta teisi haigestumise eest:</p><ul><li>Jääge oma tuppa, välja arvatud arstiabi saamiseks</li><li>Katke suu köhimisel ja aevastamisel</li><li>Peske sageli käsi</li></ul></div>"
+    },
+    {
+        "question": 7,
+        "result": "0",
+        "status": "Perearst",
+        "diagnose": "<div class=\"alert alert-info\" role=\"alert\"><p><strong>Jää koju ja hoolitse enda eest. Tervise halvenemisel korral helistage perearstile.</strong><br>Teil on üks või mitu sümptomit, mis võivad olla seotud COVID-19-ga. Jää koju ja hoolitse enda eest.</p></div>"
+    },
+    {
+        "question": 8,
+        "result": "1",
+        "status": "Jälgi sümptomeid",
+        "diagnose": "<div class=\"alert alert-info\" role=\"alert\"><p><strong>Jää koju ja jälgi oma sümptomeid. Tervise halvenemisel helistage perearstile.</strong><br>Mõned sammud, mis aitavad teil end paremini tunda:</p><ul><li>Olge kodus ja puhake</li><li>Jooge palju vett ja muid puhtaid vedelikke, et vältida vedelikukaotust (dehüdratsiooni)</li><li>Katke suu köhimisel ja aevastamisel</li><li>Peske sageli oma käsi </li></ul></div>"
+    },
+    {
+        "question": 8,
+        "result": "2",
+        "status": "Jälgi sümptomeid",
+        "diagnose": "<div class=\"alert alert-info\" role=\"alert\"><p><strong>Jää koju ja jälgi oma sümptomeid. Tervise halvenemisel helistage perearstile.</strong><br>Mõned sammud, mis aitavad teil end paremini tunda:</p><ul><li>Olge kodus ja puhake</li><li>Jooge palju vett ja muid puhtaid vedelikke, et vältida vedelikukaotust (dehüdratsiooni)</li><li>Katke suu köhimisel ja aevastamisel</li><li>Peske sageli oma käsi </li></ul></div>"
+    },
+    {
+        "question": 8,
+        "result": "3",
+        "status": "Jälgi sümptomeid",
+        "diagnose": "<div class=\"alert alert-info\" role=\"alert\"><p><strong>Jää koju ja jälgi oma sümptomeid. Tervise halvenemisel helistage perearstile.</strong><br>Mõned sammud, mis aitavad teil end paremini tunda:</p><ul><li>Olge kodus ja puhake</li><li>Jooge palju vett ja muid puhtaid vedelikke, et vältida vedelikukaotust (dehüdratsiooni)</li><li>Katke suu köhimisel ja aevastamisel</li><li>Peske sageli oma käsi </li></ul></div>"
+    },
+    {
+        "question": 8,
+        "result": "4",
+        "status": "Jälgi sümptomeid",
+        "diagnose": "<div class=\"alert alert-info\" role=\"alert\"><p><strong>Jää koju ja jälgi oma sümptomeid. Tervise halvenemisel helistage perearstile.</strong><br>Mõned sammud, mis aitavad teil end paremini tunda:</p><ul><li>Olge kodus ja puhake</li><li>Jooge palju vett ja muid puhtaid vedelikke, et vältida vedelikukaotust (dehüdratsiooni)</li><li>Katke suu köhimisel ja aevastamisel</li><li>Peske sageli oma käsi </li></ul></div>"
+    },
+    {
+        "question": 8,
+        "result": "5",
+        "status": "Jälgi sümptomeid",
+        "diagnose": "<div class=\"alert alert-info\" role=\"alert\"><p><strong>Jää koju ja jälgi oma sümptomeid. Tervise halvenemisel helistage perearstile.</strong><br>Mõned sammud, mis aitavad teil end paremini tunda:</p><ul><li>Olge kodus ja puhake</li><li>Jooge palju vett ja muid puhtaid vedelikke, et vältida vedelikukaotust (dehüdratsiooni)</li><li>Katke suu köhimisel ja aevastamisel</li><li>Peske sageli oma käsi </li></ul></div>"
     }
+
+
 ]

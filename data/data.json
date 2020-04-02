@@ -133,6 +133,52 @@
             {
                 "caption": "Jah",
                 "value": "1",
+                "next": 6
+            },
+            {
+                "caption": "Ei",
+                "value": "0",
+                "next": -1
+            }
+        ]
+    },
+    {
+        "id":"6",
+        "question": "Kas teil on mõni järgmistest sümptomitest?",
+        "description": "",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Palavik või palavik (külmavärinad, higistamine)",
+                "value": "1",
+                "next": 7
+            },
+            {
+                "caption": "Õhupuudus (mitte tugev)",
+                "value": "2",
+                "next": 7
+            },
+            {
+                "caption": "Köha",
+                "value": "3",
+                "next": 7
+            },
+            {
+                "caption": "Muu",
+                "value": "0",
+                "next": 8
+            }
+        ]
+    },
+    {
+        "id":"7",
+        "question": "Kas elate hooldusasutuses või hooldekodus?",
+        "description": "",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Jah",
+                "value": "1",
                 "next": -1
             },
             {
@@ -141,5 +187,44 @@
                 "next": -1
             }
         ]
+    },
+    {
+        "id":"8",
+        "question": "Kas teil on mõni järgmistest sümptomitest?",
+        "description": "",
+        "type": "radio",
+        "answers": [
+            {
+                "caption": "Nohu või kinnine nina",
+                "value": "1",
+                "next": -1
+            },
+            {
+                "caption": "Kähe kurk",
+                "value": "2",
+                "next": -1
+            },
+            {
+                "caption": "Lihasvalu või peavalu",
+                "value": "3",
+                "next": -1
+            },
+            {
+                "caption": "Väsimus või kurnatus",
+                "value": "4",
+                "next": -1
+            },
+            {
+                "caption": "Iiveldus, oksendamine või kõhulahtisus",
+                "value": "5",
+                "next": -1
+            },
+            {
+                "caption": "Muu",
+                "value": "0",
+                "next": -1
+            }
+        ]
     }
+
 ]
