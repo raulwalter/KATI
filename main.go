@@ -128,6 +128,7 @@ func analyseResult(r *http.Request) string {
 			break
 		}
 	}
+
 	return message
 }
 
@@ -439,8 +440,16 @@ func resultPage(w http.ResponseWriter, r *http.Request) {
 		log.Fatalln(err)
 	}
 
-	t, _ := template.ParseFiles("templates/index.html", "templates/done.html")
-	t.ExecuteTemplate(w, "layout", page)
+	// Reset questions
+	session, _ := store.Get(r, "kati-session")
+	user := getUser(session)
+	user.Questions = getQuestions()
+	session.Values["user"] = user
+	err = session.Save(r, w)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 }
 
 // Login
