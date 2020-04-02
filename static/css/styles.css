@@ -111,3 +111,92 @@ h3 {
 .api-icon {
     padding-left: 15px;
 }
+
+.vis-network:focus {
+    outline: none;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomIn::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f00e";
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f010";
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f31e";
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-left::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f060";
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-down::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f063";
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-right::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f061";
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-up::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f062";
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-up {
+    bottom: 55px;
+    left: 60px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-right {
+    left: 105px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+    bottom: 60px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
+    right: 65px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-down {
+    left: 60px;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomIn,
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut,
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends,
+div.vis-network div.vis-navigation div.vis-button.vis-left,
+div.vis-network div.vis-navigation div.vis-button.vis-down,
+div.vis-network div.vis-navigation div.vis-button.vis-right,
+div.vis-network div.vis-navigation div.vis-button.vis-up {
+    background-image: none;
+}
+
+div.vis-network div.vis-navigation div.vis-button {
+    width: 50px;
+    height: 50px;
+    font-size: 2.2rem;
+    text-align: center;
+    color: #6aa3fc;
+}
+
+div.vis-network div.vis-navigation div.vis-button:hover {
+    box-shadow: 0 0 3px 3px #b5d2ff
+}
