@@ -62,3 +62,52 @@ h3 {
 #mynetwork:focus {
     outline:0;  
 }
+
+.dashboard-icon-container {
+    border: 1px solid #b5d2ff;
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    padding: 35px;
+    top: -60px;
+    position: relative;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.dashboard-icon {
+    font-size: 6rem;
+    color: #6aa3fc;
+}
+
+.dashboard-icon-block {
+    position: relative;
+    margin-bottom: -40px;
+}
+
+.card-deck {
+    margin-top: 120px;
+}
+
+.diary-icon {
+    padding-top: 5px;
+}
+
+.add-data-icon {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.network-icon {
+    padding-top: 15px;
+    font-size: 5.0rem;
+}
+
+.map-icon {
+    font-size: 5.2rem;
+    padding-top: 10px;
+}
+
+.api-icon {
+    padding-left: 15px;
+}

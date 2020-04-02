@@ -2,120 +2,90 @@
 
 <h1 class="text-center mt-4 mb-4">Dashboard</h1>
 
-<div class="row">
-  <div class="col-md-6 mb-3">
+<div class="card-deck">
+	<div class="card">
+		<div class="card-block text-center dashboard-icon-block">
+			<div class="dashboard-icon-container">
+				<i class="fas fa-book-medical dashboard-icon diary-icon"></i>
+			</div>
+		</div>
+		<div class="card-body text-center">
+			<h5 class="card-title">Isiklik päevik</h5>
+			<p class="card-text"><small class="text-muted">Sinu kogutud andmed</small></p>
+			<a href="/diary" class="btn btn-kati">Vaata päevikut</a>
+		</div>
+	</div>
 
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-3 p-3">
-          <!-- ICON -->
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">Isiklik päevik</h5>
-            <p class="card-text"><small class="text-muted">Sinu kogutud andmed</small></p>
-            <a href="/diary" class="btn btn-kati">Vaata päevikut</a>
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="card">
+		<div class="card-block text-center dashboard-icon-block">
+			<div class="dashboard-icon-container">
+				<i class="fas fa-edit dashboard-icon add-data-icon"></i>
+			</div>
+		</div>
+		<div class="card-body text-center">
+			<h5 class="card-title">Andmete lisamine</h5>
+			<p class="card-text">
+					<small class="text-muted">Täida küsitlus andmete lisamiseks</small>
+			</p>
+			<a href="/questionnaire" class="btn btn-kati">Täida küsitlus</a>
+		</div>
+	</div>
 
-  </div>
+	<div class="card">
+		<div class="card-block text-center dashboard-icon-block">
+			<div class="dashboard-icon-container">
+				<i class="fas fa-project-diagram dashboard-icon network-icon"></i>
+			</div>
+		</div>
+		<div class="card-body text-center">
+			<h5 class="card-title">Kontaktvõrgustik</h5>
+			<p class="card-text"><small class="text-muted">Sinu kontaktvõrgustiku andmed</small></p>
+			<a href="/contactnetwork" class="btn btn-kati">Kontaktvõrgustik</a>
+		</div>
+	</div>
+</div>
 
-  <div class="col-md-6 mb-3">
+<div class="card-deck">
+	<div class="card">
+		<div class="card-block text-center dashboard-icon-block">
+			<div class="dashboard-icon-container">
+				<i class="far fa-map dashboard-icon map-icon"></i>
+			</div>
+		</div>
+		<div class="card-body text-center">
+			<h5 class="card-title">Asukoha ajalugu</h5>
+			<p class="card-text"><small class="text-muted">Asukoha andmed kaardil</small></p>
+			<a href="#" class="btn btn-kati">Vaata kaarti</a>
+		</div>
+	</div>
 
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-3 p-3">
-          <!-- ICON -->
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">Andmete lisamine</h5>
-            <p class="card-text"><small class="text-muted">Täida küsitlus andmete lisamiseks</small></p>
-            <a href="/questionnaire" class="btn btn-kati">Täida küsitlus</a>
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="card">
+		<div class="card-block text-center dashboard-icon-block">
+			<div class="dashboard-icon-container">
+				<i class="fas fa-chart-area dashboard-icon diagram-icon"></i>
+			</div>
+		</div>
+		<div class="card-body text-center">
+			<h4 class="card-title">Graafikud</h4>
+			<p class="card-text">
+				<small class="text-muted">Diagrammid ja graafikud</small>
+			</p>
+			<a href="/datafeed" class="btn btn-kati">Vaata graafikuid</a>
+		</div>
+	</div>
 
-  </div>
-
-  <div class="col-md-6 mb-3">
-
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-3 p-3">
-          <!-- ICON -->
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">Kontaktvõrgustik</h5>
-            <p class="card-text"><small class="text-muted">Sinu kontaktvõrgustiku andmed</small></p>
-            <a href="/contactnetwork" class="btn btn-kati">Kontaktvõrgustik</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="col-md-6 mb-3">
-
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-3 p-3">
-          <!-- ICON -->
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">Asukoha ajalugu</h5>
-            <p class="card-text"><small class="text-muted">Asukoha andmed kaardil</small></p>
-            <a href="#" class="btn btn-kati">Vaata kaarti</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="col-md-6 mb-3">
-
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-3 p-3">
-          <!-- ICON -->
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">Avaandmed</h5>
-            <p class="card-text"><small class="text-muted">Vaata KATI avaandmeid</small></p>
-            <a href="/api" class="btn btn-kati">Vaata avaandmeid</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="col-md-6 mb-3">
-
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-3 p-3">
-          <!-- ICON -->
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">Graafikud</h5>
-            <p class="card-text"><small class="text-muted">Diagrammid ja graafikud</small></p>
-            <a href="/datafeed" class="btn btn-kati">Vaata graafikuid</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
+	<div class="card">
+		<div class="card-block text-center dashboard-icon-block">
+			<div class="dashboard-icon-container">
+				<i class="fas fa-code-branch dashboard-icon api-icon"></i>
+			</div>
+		</div>
+		<div class="card-body text-center">
+			<h4 class="card-title">Avaandmed</h4>
+			<p class="card-text"><small class="text-muted">Vaata KATI avaandmeid</small></p>
+			<a href="/api" class="btn btn-kati">Vaata avaandmeid</a>
+		</div>
+	</div>
 </div>
 
 {{ end }}
