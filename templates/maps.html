@@ -2,5 +2,54 @@
 
 <h1 class="mb-4 text-center mt-5">Kaardirakendus</h1>
 
+<p class="text-center">KATI päevikute põhjal ära kaardistatud COVID-19 hetkeseis Eestis.</p>
+
+<div id="map_estonia"></div>
+
+<script type='text/javascript'>
+    google.charts.load('current', {
+        'packages': ['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawMarkersMap);
+
+    function drawMarkersMap() {
+
+        var diagnoses = ['terve', 'perearst', 'kiirabi'];
+
+        var currentData = [
+            ['Lat', 'Lng', 'Diagnose', ''],
+            [59.4370, 24.7536, 'M 39', 0],
+            [59.3471, 26.3593, 'N 72', 2],
+            [58.8879, 25.5412, 'N 62', 1],
+        ];
+
+        var view = new google.visualization.DataView(google.visualization.arrayToDataTable(currentData));
+
+        view.setColumns([0, 1, 2, {
+            type: 'number',
+            label: '',
+            calc: function(dataTable, rowIndex) {
+                return {
+                    v: dataTable.getValue(rowIndex, 3),
+                    f: diagnoses[dataTable.getValue(rowIndex, 3)]
+                }
+            }
+        }]);
+
+        var options = {
+            region: 'EE',
+            legend: 'none',
+            sizeAxis: { minValue: 0, maxValue: 2, minSize: 10, maxSize: 10 },
+            displayMode: 'markers',
+            colorAxis: { colors: ['green', 'blue', 'red'], values: [0, 1, 2] }
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('map_estonia'));
+        chart.draw(view, options);
+    };
+</script>
 
 {{ end }}
