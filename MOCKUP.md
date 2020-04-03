@@ -26,3 +26,5 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Guido Gröön** - *Initial work*
+* **Hans Niinemäe** - *Database*
+* **Alex Lõhmus** - *UI*

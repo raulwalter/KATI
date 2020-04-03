@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"strconv"
 )
 
@@ -53,34 +52,23 @@ func getDiagnoses() []Diagnose {
 // Get CoVid Estonia data
 func getCovCountry() (CoVidCountry, error) {
 	var cov CoVidCountry
-	url := "https://covid19.mathdro.id/api/countries/Estonia"
-	res, err := http.Get(url)
-	if err != nil {
-		return cov, err
-	}
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return cov, err
-	}
-
-	json.Unmarshal(body, &cov)
+	file, _ := ioutil.ReadFile("data/Estonia.json")
+	_ = json.Unmarshal([]byte(file), &cov)
 	return cov, nil
 }
 
 // Get all data for map use
 func getCoVidMap() ([]CoVidMap, error) {
 	var cov []CoVidMap
-	url := "https://covid19.mathdro.id/api/confirmed"
-	res, err := http.Get(url)
-	if err != nil {
-		return cov, err
-	}
-	body, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		return cov, err
-	}
-
-	json.Unmarshal(body, &cov)
+	file, _ := ioutil.ReadFile("data/confirmed_world.json")
+	_ = json.Unmarshal([]byte(file), &cov)
 	return cov, nil
+}
+
+// Get data of tested persons in Estonia
+func getEstoniaCovidTested() ([]TestedPerson, error) {
+	var testedPersons []TestedPerson
+	file, _ := ioutil.ReadFile("data/opendata_covid19_test_results.json")
+	_ = json.Unmarshal([]byte(file), &testedPersons)
+	return testedPersons, nil
 }

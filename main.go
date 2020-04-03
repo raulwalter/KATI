@@ -16,6 +16,7 @@ import (
 	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
 	"github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/mileusna/crontab"
 )
 
 var (
@@ -536,10 +537,26 @@ var sessionHandler = func(next http.Handler) http.Handler {
 
 func main() {
 
+	// Download data on service initialization
+	go downloadFromTerviseamet()
+	go downloadCovidData()
+
+	// Setup crons
+	ctab := crontab.New()
+	// Run terviseamet cron once a day
+	err := ctab.AddJob("* 0 * * *", downloadFromTerviseamet)
+	if err != nil {
+		fmt.Println("Cron error:", err)
+	}
+	// Run Covid cron after every 3 hour
+	err = ctab.AddJob("* */3 * * *", downloadCovidData)
+	if err != nil {
+		fmt.Println("Cron error:", err)
+	}
+
 	router := mux.NewRouter()
 
 	serveStatic(router)
-
 	router.HandleFunc("/", getDefault).Methods("GET")
 	router.HandleFunc("/datafeed", dataFeed).Methods("GET")
 	router.HandleFunc("/done", resultPage).Methods("GET")

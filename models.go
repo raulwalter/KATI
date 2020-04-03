@@ -101,6 +101,18 @@ type CoVidMap struct {
 	Iso3          string      `json:"iso3,omitempty"`
 }
 
+// TestedPerson hold data of tested persons
+type TestedPerson struct {
+	ID                 string      `json:"id"`
+	Gender             string      `json:"Gender"`
+	AgeGroup           interface{} `json:"AgeGroup"`
+	Country            string      `json:"Country"`
+	County             interface{} `json:"County"`
+	ResultValue        string      `json:"ResultValue"`
+	ResultTime         time.Time   `json:"ResultTime"`
+	AnalysisInsertTime time.Time   `json:"AnalysisInsertTime"`
+}
+
 func (u *User) getAnswersMap() map[string]interface{} {
 	m := make(map[string]interface{})
 
