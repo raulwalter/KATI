@@ -25,6 +25,16 @@
 
 <p class="text-center text-small mt-3 text-muted">Eesti andmed seisuga {{ .Country.LastUpdate}}</p>
 
+<div id="estonia_div"></div>
+
+<h2 class="text-center mt-5">COVID-19 positiivsed vanusegrupiti</h2>
+
+<div id="age_pie" style="height: 600px"></div>
+
+<h2 class="text-center">COVID-19 positiivsete sooline jaotus</h2>
+
+<div id="gender_pie" style="height: 600px"></div>
+
 <script>
     google.charts.load('current', {
         'packages': ['geochart'],
@@ -43,7 +53,7 @@
         ]);
 
     var options = {
-        colorAxis: {colors: ['#4374e0', '#e7711c']}
+        colorAxis: { colors: ['#4374e0', '#e7711c'] }
     };
 
     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
@@ -51,5 +61,78 @@
     chart.draw(data, options);
     }    
 </script>
+
+<script type='text/javascript'>
+    google.charts.load('current', {
+        'packages': ['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    });
+    google.charts.setOnLoadCallback(drawMarkersMap);
+
+    function drawMarkersMap() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Maakond', 'COV Positive'],
+            {{ range $k, $v:= .ByCountyPositive }}
+    ['{{ $k }}', {{ $v }}],
+        {{ end }}
+        ]);
+
+        var options = {
+            region: 'EE',
+            colorAxis: {colors: ['red']},
+            resolution: 'provinces',
+            displayMode: 'regions',
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('estonia_div'));
+        chart.draw(data, options);
+    };
+</script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Vanuse grupp', 'Positiivsed'],
+        {{ range $k, $v:= .AgeGroupsPositive }}
+    ['{{ $k }}', {{ $v }}],
+        {{ end }}
+      ]);
+
+      var options = {
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('age_pie'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Sugu', 'Positiivsed'],
+        ['Mehed', {{.PositiveByGender.Men}}],
+        ['Naised', {{.PositiveByGender.Women}}]
+      ]);
+
+      var options = {
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('gender_pie'));
+
+      chart.draw(data, options);
+    }
+  </script>
 
 {{ end }}

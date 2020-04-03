@@ -432,11 +432,58 @@ func dataFeed(w http.ResponseWriter, r *http.Request) {
 		}
 		if tp.County != nil {
 			if tp.ResultValue == "P" && reflect.TypeOf(tp.County).Kind() == reflect.String {
+
+				if tp.County == "Harju maakond" {
+					tp.County = "Harjumaa"
+				}
+				if tp.County == "Hiiu maakond" {
+					tp.County = "Hiiumaa"
+				}
+				if tp.County == "Ida-Viru maakond" {
+					tp.County = "Ida-Virumaa"
+				}
+				if tp.County == "Järva maakond" {
+					tp.County = "Järvamaa"
+				}
+				if tp.County == "Jõgeva maakond" {
+					tp.County = "Jõgevamaa"
+				}
+				if tp.County == "Lääne maakond" {
+					tp.County = "Läänemaa"
+				}
+				if tp.County == "Lääne-Viru maakond" {
+					tp.County = "Lääne-Virumaa"
+				}
+				if tp.County == "Pärnu maakond" {
+					tp.County = "Pärnumaa"
+				}
+				if tp.County == "Põlva maakond" {
+					tp.County = "Põlvamaa"
+				}
+				if tp.County == "Rapla maakond" {
+					tp.County = "Raplamaa"
+				}
+				if tp.County == "Saare maakond" {
+					tp.County = "Saaremaa"
+				}
+				if tp.County == "Tartu maakond" {
+					tp.County = "Tartumaa"
+				}
+				if tp.County == "Valga maakond" {
+					tp.County = "Valgamaa"
+				}
+				if tp.County == "Viljandi maakond" {
+					tp.County = "Viljandimaa"
+				}
+				if tp.County == "Võru maakond" {
+					tp.County = "Võrumaa"
+				}
+
 				_, ok := byCounty[tp.County]
 				if !ok {
 					byCounty[tp.County] = 1
 				} else {
-					byCounty[tp.County] = ageGroup[tp.County] + 1
+					byCounty[tp.County] = byCounty[tp.County] + 1
 				}
 			}
 		}
