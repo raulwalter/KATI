@@ -9,6 +9,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"reflect"
 	"strconv"
 
 	"github.com/gorilla/handlers"
@@ -362,10 +363,13 @@ func dataFeed(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 
 	type FeedPage struct {
-		Title           string
-		IsAuthenticated bool
-		Country         CoVidCountry
-		World           map[string]float64
+		Title             string
+		IsAuthenticated   bool
+		Country           CoVidCountry
+		World             map[string]float64
+		PositiveByGender  PositiveByGender
+		AgeGroupsPositive map[interface{}]int
+		ByCountyPositive  map[interface{}]int
 	}
 
 	cov, err := getCovCountry()
@@ -395,11 +399,58 @@ func dataFeed(w http.ResponseWriter, r *http.Request) {
 		m[i] = v / 1000000
 	}
 
+	// Analyse Terviseamet
+	var positiveGen PositiveByGender
+	var ageGroup map[interface{}]int
+	var byCounty map[interface{}]int
+	ageGroup = make(map[interface{}]int)
+	byCounty = make(map[interface{}]int)
+
+	terviseametData, err := getEstoniaCovidTested()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	for _, tp := range terviseametData {
+		if tp.Gender == "M" && tp.ResultValue == "P" {
+			positiveGen.Men = positiveGen.Men + 1
+		}
+		if tp.Gender == "N" && tp.ResultValue == "P" {
+			positiveGen.Women = positiveGen.Women + 1
+		}
+
+		//fmt.Println(tp.AgeGroup, reflect.TypeOf(tp.AgeGroup).Kind(), reflect.TypeOf(tp.AgeGroup).Kind() == reflect.String)
+
+		if tp.AgeGroup != nil {
+			if tp.ResultValue == "P" && reflect.TypeOf(tp.AgeGroup).Kind() == reflect.String {
+				_, ok := ageGroup[tp.AgeGroup]
+				if !ok {
+					ageGroup[tp.AgeGroup] = 1
+				} else {
+					ageGroup[tp.AgeGroup] = ageGroup[tp.AgeGroup] + 1
+				}
+			}
+		}
+		if tp.County != nil {
+			if tp.ResultValue == "P" && reflect.TypeOf(tp.County).Kind() == reflect.String {
+				_, ok := byCounty[tp.County]
+				if !ok {
+					byCounty[tp.County] = 1
+				} else {
+					byCounty[tp.County] = ageGroup[tp.County] + 1
+				}
+			}
+		}
+
+	}
+
 	feed := &FeedPage{}
 	feed.Title = "Andmestik"
 	feed.IsAuthenticated = isAuthenticated(r)
 	feed.Country = cov
 	feed.World = m
+	feed.PositiveByGender = positiveGen
+	feed.AgeGroupsPositive = ageGroup
+	feed.ByCountyPositive = byCounty
 
 	err = render(w, "datafeed", feed)
 	if err != nil {

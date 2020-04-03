@@ -113,6 +113,12 @@ type TestedPerson struct {
 	AnalysisInsertTime time.Time   `json:"AnalysisInsertTime"`
 }
 
+// PositiveByGender holds CoVid-19 positive by gender
+type PositiveByGender struct {
+	Men   int
+	Women int
+}
+
 func (u *User) getAnswersMap() map[string]interface{} {
 	m := make(map[string]interface{})
 
